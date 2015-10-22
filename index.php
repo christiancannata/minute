@@ -106,10 +106,12 @@ $f3->route('GET /login',
 		$auth = new \Auth($db_mapper, array('id' => 'username', 'pw' => 'password'));
 
 		$login_result = $auth->login('admin','secret_pwd'); // returns true on successful login
-		var_dump($login_result);
 
-		$f3->set('content','login.htm');
-		echo View::instance()->render('layout.htm');
+		$f3->set('bodyClass','login social-login');
+		$f3->set('content','login.html');
+
+
+		echo View::instance()->render('layout.html');
 	}
 );
 

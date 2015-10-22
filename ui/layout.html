@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="<?php echo $ENCODING; ?>" />
+		<title>Powered by <?php echo $PACKAGE; ?></title>
+		<base href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<title>Westilo - Bootstrap Responsive Admin Template</title>
+		<link type="text/css" rel="stylesheet" href="ui/css/font-awesome.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/material-design-iconic-font.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/animate.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/layout.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/components.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/widgets.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/plugins.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/pages.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/bootstrap-extend.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/common.css">
+		<link type="text/css" rel="stylesheet" href="ui/css/responsive.css">
+	</head>
+	<body class="<?php echo Base::instance()->get('bodyClass'); ?>">
+
+
+		<?php echo $this->render(Base::instance()->get('content')); ?>
+	</body>
+
+
+	<script language="javascript" src="ui/js/jquery.js" ></script>
+	<script language="javascript" src="ui/js/bootstrap.min.js" ></script>
+	<script src="ui/js/lib/jRespond.js"></script>
+	<script src="ui/js/lib/hammerjs.js"></script>
+	<script src="ui/js/lib/jquery.hammer.js"></script>
+	<script src="ui/js/lib/smoothscroll.js"></script>
+	<script src="ui/js/lib/smart-resize.js"></script>
+
+	<script src="ui/js/lib/jquery.validate.js"></script>
+	<script src="ui/js/lib/jquery.form.js"></script>
+	<script src="ui/js/lib/j-forms.js"></script>
+	<script src="ui/js/lib/login-validation.js"></script>
+
+</html>
