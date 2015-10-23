@@ -96,6 +96,7 @@ $(document).ready(function(){
                             // Make submit button available
                             $('#forms-login button[type="submit"]').attr('disabled', false);
                         }, 5000);
+                        location.href='/dashboard';
                     }
                 }
             });

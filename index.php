@@ -23,6 +23,18 @@ $f3->set(
 
 
 $f3->set('AUTOLOAD', 'autoload/');
+$f3->set('SERIALIZER', 'json');
+
+$f3->set('userLogged', false);
+
+
+if (!$f3->exists('user')) {
+    if ($f3->exists('COOKIE.__minuteU')) {
+        $f3->set('user', json_decode(base64_decode($f3->get('COOKIE.__minuteU')), true));
+    }
+}
+
+
 // Load configuration
 $f3->config('config.ini');
 
@@ -127,35 +139,30 @@ $f3->route(
     }
 );
 
+$f3->route(
+    'GET /logout',
+    function ($f3) {
+
+
+        $f3->clear('COOKIE.__minuteU');
+        $f3->clear('user');
+
+
+        $f3->set('bodyClass', 'login social-login');
+
+        $f3->reroute('/login');
+    }
+);
+
+$f3->route(
+    'HEAD /connection-test',
+    function ($f3) {
+    }
+);
 
 $f3->route(
     'GET /login',
     function ($f3) {
-
-        $username = $f3->get('POST.email');
-        $password = $f3->get('POST.password');
-        $hashedPassword = sha1($password);
-        $submit = $f3->get('POST.submit');
-
-        if (isset($submit)) {
-            global $db;
-            $user = new \DB\SQL\Mapper($f3->get('DB'), 'user');
-
-            // username is email, password is password in our case
-            $auth = new \Auth($user, array('id' => 'username', 'pw' => 'password'));
-            $loginResult = $auth->login($username, $hashedPassword); // Cross-check with users with hashedPassword
-
-            // Authenticated the user successfully
-            if ($loginResult == true) {
-
-                $f3->set('COOKIE.userid');
-                $f3->set('SESSION.login');
-
-            }
-        } else {
-            $f3->set('message', 'Please enter valid username/password');
-
-        }
 
         $f3->set('bodyClass', 'login social-login');
 
@@ -168,23 +175,29 @@ $f3->route(
     'POST /login',
     function ($f3) {
 
-        $username = $f3->get('POST.email');
+        $username = $f3->get('POST.username');
         $password = $f3->get('POST.password');
         $hashedPassword = sha1($password);
 
-        global $db;
         $user = new \DB\SQL\Mapper($f3->get('DB'), 'user');
 
         // username is email, password is password in our case
         $auth = new \Auth($user, array('id' => 'username', 'pw' => 'password'));
+
         $loginResult = $auth->login($username, $hashedPassword); // Cross-check with users with hashedPassword
 
         // Authenticated the user successfully
         if ($loginResult == true) {
 
-            $f3->set('COOKIE.userid');
-            $f3->set('SESSION.login');
-            echo "success-message";
+            $user = new \Model\User();
+            $user->load(array('username = ?', $username));
+
+
+            //set unlimited cookie time
+            $inTwoMonths = 60 * 60 * 24 * 60 + time();
+            $f3->set('COOKIE.__minuteU', base64_encode(json_encode($user->cast())), $inTwoMonths);
+
+            echo "<div class='success-message'>Login effettuato con successo!</div>";
             die();
         }
         echo "Errore login, controlla i dati inseriti e riprova.";

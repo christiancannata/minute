@@ -23,7 +23,7 @@ class User extends \DB\Cortex
             'type' => \DB\SQL\Schema::DT_DATETIME
         ),
         'pages' => array(
-            'has-many' => array('\Model\Page','author'),
+            'has-many' => array('\Model\Page', 'author'),
         ),
 
     );
@@ -31,7 +31,5 @@ class User extends \DB\Cortex
     protected $db = 'DB';
     protected $table = 'user';
     protected $fluid = true;      // triggers the SQL Fluid Mode, default: false
-
-
 
 }
