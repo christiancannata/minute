@@ -2396,5 +2396,10 @@ jQuery(document).ready(function ($) {
         $("tr[data-type=todo]:last-child").addClass("clone-row");
     });
 
+    $("select.todo").change(function(){
+        var color=$(this).find("option:selected").css("background-color");
+        $(this).css("background-color",color);
+    });
+
 })
 ;

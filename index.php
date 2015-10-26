@@ -137,7 +137,8 @@ $f3->route(
             $f3->set('heder', 'header.html');
             $f3->set('bodyClass', 'leftbar-view');
             $f3->set('content', 'dashboard.html');
-            echo View::instance()->render('layout.html');
+            echo Template::instance()->render('layout.html');
+
         }else{
             $f3->reroute('/login');
         }
@@ -156,7 +157,7 @@ $f3->route(
             $f3->set('header', 'header.html');
             $f3->set('leftBar', 'left-bar.html');
             $f3->set('rightBar', 'right-bar.html');
-            $f3->set('heder', 'header.html');
+            $f3->set('header', 'header.html');
             $f3->set('bodyClass', 'leftbar-view');
             $f3->set('content', 'new-board.html');
 
@@ -196,9 +197,17 @@ $f3->route(
     'GET /login',
     function ($f3) {
 
+        if($f3->get('userLogged')){
+            $f3->reroute('/dashboard');
+        }
+
+
         $f3->set('bodyClass', 'login social-login');
 
         echo View::instance()->render('login.html');
+
+
+
     }
 );
 

@@ -2979,3 +2979,28 @@ tr[data-type=todo]:hover .remove-task{
 .content-editable:hover,.content-editable:focus{
   background:#ffc;
 }
+
+select.todo{
+  color:white;
+}
+
+
+select.todo option[value="agenda"]{
+  background: red;
+}
+
+select.todo option[value="decision"]{
+  background: blue;
+}
+
+select.todo option[value="done"]{
+  background: lightblue;
+}
+
+select.todo option[value="info"]{
+  background: orange;
+}
+
+select.todo option[value="idea"]{
+  background: darkorange;
+}
