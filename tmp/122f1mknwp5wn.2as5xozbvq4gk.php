@@ -8,7 +8,7 @@
                 <div class="admin-user-info">
                     <ul>
                         <li><a href="#">Kamrujaman Shohel</a></li>
-                        <li><a href="#">{{ @content }}</a></li>
+                        <li><a href="#"><?php echo $content; ?></a></li>
                     </ul>
                 </div>
             </div>

@@ -8,30 +8,37 @@
 
 namespace Model;
 
-class Page extends \DB\Cortex
+class Topic extends \DB\Cortex
 {
 
     protected $fieldConf = array(
-        'title' => array(
+        'name' => array(
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,
         ),
         'timestamp' => array(
             'type' => \DB\SQL\Schema::DT_DATETIME
         ),
-        'author' => array(
+        'owner' => array(
             'belongs-to-one' => '\Model\User'
         ),
-        'topics' => array(
+        'type' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
+        'note' => array(
+            'type' => \DB\SQL\Schema::DT_TEXT,
+            'nullable' => true,
+        ),
+        'due' => array(
             'type' => \DB\SQL\Schema::DT_DATETIME
         ),
 
     );
 
     protected $db = 'DB';
-    protected $table = 'page';
+    protected $table = 'topic';
     protected $fluid = true;      // triggers the SQL Fluid Mode, default: false
-
 
 
 }

@@ -2384,14 +2384,16 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click','.remove-task',function(){
         $(this).closest("tr").remove();
+        $("tr[data-type=todo].clone-row").removeClass("clone-row");
+        $("tr[data-type=todo]:last-child").addClass("clone-row");
 
     });
 
 
     $(document).on('click','tr[data-type=todo].clone-row td input',function(){
         $(this).closest('tr').removeClass("clone-row");
-        $(this).closest('tr').after('<tr data-type="todo" class="clone-row">'+$(this).closest('tr').html()+'</tr>');
-
+        $(this).closest('tr').after('<tr data-type="todo" >'+$(this).closest('tr').html()+'</tr>');
+        $("tr[data-type=todo]:last-child").addClass("clone-row");
     });
 
 })

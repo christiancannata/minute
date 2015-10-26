@@ -159,7 +159,8 @@ $f3->route(
             $f3->set('heder', 'header.html');
             $f3->set('bodyClass', 'leftbar-view');
             $f3->set('content', 'new-board.html');
-            echo View::instance()->render('layout.html');
+
+            echo Template::instance()->render('layout.html');
         }else{
             $f3->reroute('/login');
         }

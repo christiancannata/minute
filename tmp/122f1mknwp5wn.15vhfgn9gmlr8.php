@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="<?php echo $ENCODING; ?>"/>
-    <title>Powered by <?php echo $PACKAGE; ?></title>
+    <title>Powered by</title>
     <base href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -30,24 +30,24 @@
 
 
 <!--Topbar Start Here-->
-<include href="{{@header}}" if="isset(@header)"/>
+<?php if (isset($header)) echo $this->render($header,$this->mime,get_defined_vars()); ?>
 <!--Topbar End Here-->
 
 <!--Leftbar Start Here-->
 
-<include href="{{@leftBar}}" if="isset(@leftBar)"/>
+<?php if (isset($leftBar)) echo $this->render($leftBar,$this->mime,get_defined_vars()); ?>
 <section class="main-container">
-    <include href="{{@content}}" if="isset(@content)"/>
+    <?php if (isset($content)) echo $this->render($content,$this->mime,get_defined_vars()); ?>
 
     <!--Footer Start Here -->
-    <include href="{{@footer}}" if="isset(@footer)"/>
+    <?php if (isset($footer)) echo $this->render($footer,$this->mime,get_defined_vars()); ?>
     <!--Footer End Here -->
 </section>
 
 
 <!--Page Container End Here-->
 <!--Rightbar Start Here-->
-<include href="{{@rightBar}}" if="isset(@rightBar)"/>
+<?php if (isset($rightBar)) echo $this->render($rightBar,$this->mime,get_defined_vars()); ?>
 
 <!--Rightbar End Here-->
 
