@@ -27,6 +27,11 @@ $f3->set('SERIALIZER', 'json');
 
 $f3->set('userLogged', false);
 
+$f3->set('pusher_app_id', '150225');
+$f3->set('pusher_api_key', '088902d062daa269f399');
+$f3->set('pusher_app_secret', 'f173a5638c6189c3ffd4');
+
+
 
 if (!$f3->exists('user')) {
     if ($f3->exists('COOKIE.__minuteU')) {
@@ -115,7 +120,7 @@ $f3->route(
 $f3->route(
     'GET /dashboard',
     function ($f3) {
-        if($f3->get('userLogged')){
+        if ($f3->get('userLogged')) {
             $user = new \Model\User();
             $page = new \Model\Page();
 
@@ -139,7 +144,7 @@ $f3->route(
             $f3->set('content', 'dashboard.html');
             echo Template::instance()->render('layout.html');
 
-        }else{
+        } else {
             $f3->reroute('/login');
         }
 
@@ -147,11 +152,25 @@ $f3->route(
 );
 
 
-
 $f3->route(
     'GET /new-board',
     function ($f3) {
-        if($f3->get('userLogged')){
+        if ($f3->get('userLogged')) {
+
+
+
+            $pusher = new Services\Pusher(
+                $f3->get('pusher_api_key'),
+                $f3->get('pusher_app_secret'),
+                $f3->get('pusher_app_id'),
+                array('encrypted' => true)
+            );
+
+            $params = array(
+                "message" => " ha effettuato l'accesso.",
+            );
+
+            var_dump($pusher->trigger('private-login', 'my_event', $params,null,true));
 
             $f3->set('footer', 'footer.html');
             $f3->set('header', 'header.html');
@@ -162,14 +181,12 @@ $f3->route(
             $f3->set('content', 'new-board.html');
 
             echo Template::instance()->render('layout.html');
-        }else{
+        } else {
             $f3->reroute('/login');
         }
 
     }
 );
-
-
 
 
 $f3->route(
@@ -197,7 +214,7 @@ $f3->route(
     'GET /login',
     function ($f3) {
 
-        if($f3->get('userLogged')){
+        if ($f3->get('userLogged')) {
             $f3->reroute('/dashboard');
         }
 
@@ -205,7 +222,6 @@ $f3->route(
         $f3->set('bodyClass', 'login social-login');
 
         echo View::instance()->render('login.html');
-
 
 
     }
@@ -237,6 +253,17 @@ $f3->route(
             //set unlimited cookie time
             $inTwoMonths = 60 * 60 * 24 * 60 + time();
             $f3->set('COOKIE.__minuteU', base64_encode(json_encode($user->cast())), $inTwoMonths);
+
+            $pusher = new Services\Pusher(
+                $f3->get('pusher_api_key'),
+                $f3->get('pusher_app_secret'),
+                $f3->get('pusher_app_id'),
+                array('encrypted' => true)
+            );
+
+            $params = array(
+                "message" => $username." ha effettuato l'accesso.",
+            );
 
             echo "<div class='success-message'>Login effettuato con successo!</div>";
             die();
