@@ -2966,3 +2966,16 @@
 .footer-container .footer-right .footer-meta i {
   color: #00bcd4;
 }
+
+.remove-task{
+  display:none
+}
+tr[data-type=todo]:hover .remove-task{
+  display:block
+}
+.content-editable{
+  border:none;
+}
+.content-editable:hover,.content-editable:focus{
+  background:#ffc;
+}

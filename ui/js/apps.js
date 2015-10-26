@@ -2372,9 +2372,27 @@ jQuery(document).ready(function ($) {
 
     Offline.options = {checks: {xhr: {url: '/connection-test'}}};
 
-    $(".check").click(function(){
-        alert(Offline.check());
+    $(".check").click(function () {
+        alert(Offline.state);
+    });
+
+    $(".toggleMetaFields dd").click(function(){
+        $("."+$(this).attr("data-toggle")).toggle();
+        $(this).hide();
+
+    });
+
+    $(document).on('click','.remove-task',function(){
+        $(this).closest("tr").remove();
+
     });
 
 
-});
+    $(document).on('click','tr[data-type=todo].clone-row td input',function(){
+        $(this).closest('tr').removeClass("clone-row");
+        $(this).closest('tr').after('<tr data-type="todo" class="clone-row">'+$(this).closest('tr').html()+'</tr>');
+
+    });
+
+})
+;

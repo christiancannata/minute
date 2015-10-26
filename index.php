@@ -31,6 +31,8 @@ $f3->set('userLogged', false);
 if (!$f3->exists('user')) {
     if ($f3->exists('COOKIE.__minuteU')) {
         $f3->set('user', json_decode(base64_decode($f3->get('COOKIE.__minuteU')), true));
+        $f3->set('userLogged', true);
+
     }
 }
 
@@ -113,31 +115,60 @@ $f3->route(
 $f3->route(
     'GET /dashboard',
     function ($f3) {
+        if($f3->get('userLogged')){
+            $user = new \Model\User();
+            $page = new \Model\Page();
 
-        $user = new \Model\User();
-        $page = new \Model\Page();
+            $oggi = new DateTime();
+            $user->username = "prova";
+            $user->username = sha1("prova");
+            $user->timestamp = $oggi->format("Y-m-d H:i:s");
+            $user->save();
 
-        $oggi = new DateTime();
-        $user->username = "prova";
-        $user->username = sha1("prova");
-        $user->timestamp = $oggi->format("Y-m-d H:i:s");
-        $user->save();
+            $page->title = "titolo";
+            $page->timestamp = $oggi->format("Y-m-d H:i:s");
+            $page->author = $user;
+            $page->save();
 
-        $page->title = "titolo";
-        $page->timestamp = $oggi->format("Y-m-d H:i:s");
-        $page->author = $user;
-        $page->save();
+            $f3->set('footer', 'footer.html');
+            $f3->set('header', 'header.html');
+            $f3->set('leftBar', 'left-bar.html');
+            $f3->set('rightBar', 'right-bar.html');
+            $f3->set('heder', 'header.html');
+            $f3->set('bodyClass', 'leftbar-view');
+            $f3->set('content', 'dashboard.html');
+            echo View::instance()->render('layout.html');
+        }else{
+            $f3->reroute('/login');
+        }
 
-        $f3->set('footer', 'footer.html');
-        $f3->set('header', 'header.html');
-        $f3->set('leftBar', 'left-bar.html');
-        $f3->set('rightBar', 'right-bar.html');
-        $f3->set('heder', 'header.html');
-        $f3->set('bodyClass', 'leftbar-view');
-        $f3->set('content', 'dashboard.html');
-        echo View::instance()->render('layout.html');
     }
 );
+
+
+
+$f3->route(
+    'GET /new-board',
+    function ($f3) {
+        if($f3->get('userLogged')){
+
+            $f3->set('footer', 'footer.html');
+            $f3->set('header', 'header.html');
+            $f3->set('leftBar', 'left-bar.html');
+            $f3->set('rightBar', 'right-bar.html');
+            $f3->set('heder', 'header.html');
+            $f3->set('bodyClass', 'leftbar-view');
+            $f3->set('content', 'new-board.html');
+            echo View::instance()->render('layout.html');
+        }else{
+            $f3->reroute('/login');
+        }
+
+    }
+);
+
+
+
 
 $f3->route(
     'GET /logout',
