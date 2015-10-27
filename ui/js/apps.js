@@ -2405,9 +2405,13 @@ jQuery(document).ready(function ($) {
     });
 
     $(document).on('click', '.remove-task', function () {
-        $(this).closest("tr").remove();
-        $("tr[data-type=todo].clone-row").removeClass("clone-row");
-        $("tr[data-type=todo]:last-child").addClass("clone-row");
+        var rows=$(".minutes table tbody tr").length;
+
+        if(rows>1){
+            $(this).closest("tr").remove();
+            $("tr[data-type=todo].clone-row").removeClass("clone-row");
+            $("tr[data-type=todo]:last-child").addClass("clone-row");
+        }
 
     });
 
