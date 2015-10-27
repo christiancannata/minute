@@ -2445,6 +2445,8 @@ jQuery(document).ready(function ($) {
     $(".j-forms").submit(function (e) {
         e.preventDefault();
 
+        $(".save").toggleClass("hide");
+        $(".processing").toggleClass("hide");
 
         var lastRowValid = $("tr[data-type=todo]:last-child");
 
@@ -2468,17 +2470,15 @@ jQuery(document).ready(function ($) {
                 data: formData, // our data object
                 dataType: 'json', // what type of data do we expect back from the server
                 encode: true
-            })
-                // using the done promise callback
-                .success(function (data) {
-
+            }).done(function (data) {
                     // log data to the console so we can see
-                    console.log(data);
-
                     // here we will handle errors and validation messages
+
+                    $(".save").removeClass("hide");
+                    $(".processing").toggleClass("hide");
+
                 });
         } else {
-
 
             var formData = $(this).serializeObject();
 
@@ -2488,6 +2488,9 @@ jQuery(document).ready(function ($) {
                 console.log(err);
             });
 
+
+            $(".save").removeClass("hide");
+            $(".processing").addClass("hide");
 
 
         }

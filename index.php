@@ -120,19 +120,6 @@ $f3->route(
     'GET /dashboard',
     function ($f3) {
         if ($f3->get('userLogged')) {
-            $user = new \Model\User();
-            $page = new \Model\Page();
-
-            $oggi = new DateTime();
-            $user->username = "prova";
-            $user->username = sha1("prova");
-            $user->timestamp = $oggi->format("Y-m-d H:i:s");
-            $user->save();
-
-            $page->title = "titolo";
-            $page->timestamp = $oggi->format("Y-m-d H:i:s");
-            $page->author = $user;
-            $page->save();
 
             $f3->set('footer', 'footer.html');
             $f3->set('header', 'header.html');
@@ -141,7 +128,6 @@ $f3->route(
             $f3->set('heder', 'header.html');
             $f3->set('bodyClass', 'leftbar-view');
             $f3->set('content', 'dashboard.html');
-
 
             if (!$f3->exists('SESSION.__loginSent')) {
 
@@ -218,22 +204,26 @@ $f3->route(
 
         $page->save();
 
-        foreach ($params['topic'] as $key => $topic) {
-            $topic = new \Model\Topic();
+        if (!empty($params['topic'])) {
+            foreach ($params['topic'] as $key => $topic) {
+                $topic = new \Model\Topic();
 
-            $topic->name = $params['topic'][$key];
-            $topic->type = $params['type'][$key];
-            $topic->due = $params['due'][$key];
-            $topic->owner = $params['owner'][$key];
-            $topic->note = $params['note'][$key];
-            $topic->page = $page;
+                $topic->name = $params['topic'][$key];
+                $topic->type = $params['type'][$key];
+                $topic->due = $params['due'][$key];
+                $topic->owner = $params['owner'][$key];
+                $topic->note = $params['note'][$key];
+                $topic->page = $page;
 
-            $now = new \DateTime();
-            $topic->timestamp = $now->format("Y-m-d H:i:s");
+                $now = new \DateTime();
+                $topic->timestamp = $now->format("Y-m-d H:i:s");
 
-            $topic->save();
-            $topicPage[] = $topic;
+                $topic->save();
+                $topicPage[] = $topic;
+            }
         }
+        echo json_encode(["response"=>"ok"]);
+
     }
 );
 
@@ -318,7 +308,6 @@ $f3->route(
 $f3->route(
     'POST /login',
     function ($f3) {
-
         $username = $f3->get('POST.username');
         $password = $f3->get('POST.password');
         $hashedPassword = sha1($password);
@@ -326,7 +315,7 @@ $f3->route(
         $user = new \DB\SQL\Mapper($f3->get('DB'), 'user');
 
         // username is email, password is password in our case
-        $auth = new \Auth($user, array('id' => 'username', 'pw' => 'password'));
+        $auth = new \Auth($user, array('id' => 'email', 'pw' => 'password'));
 
         $loginResult = $auth->login($username, $hashedPassword); // Cross-check with users with hashedPassword
 
@@ -334,7 +323,7 @@ $f3->route(
         if ($loginResult == true) {
 
             $user = new \Model\User();
-            $user->load(array('username = ?', $username));
+            $user->load(array('email = ?', $username));
 
 
             //set unlimited cookie time

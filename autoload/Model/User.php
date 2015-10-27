@@ -12,7 +12,15 @@ class User extends \DB\Cortex
 {
 
     protected $fieldConf = array(
-        'username' => array(
+        'name' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
+        'surname' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
+        'email' => array(
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,
         ),
@@ -20,6 +28,9 @@ class User extends \DB\Cortex
             'type' => \DB\SQL\Schema::DT_VARCHAR256
         ),
         'timestamp' => array(
+            'type' => \DB\SQL\Schema::DT_DATETIME
+        ),
+        'last_login' => array(
             'type' => \DB\SQL\Schema::DT_DATETIME
         ),
         'pages' => array(

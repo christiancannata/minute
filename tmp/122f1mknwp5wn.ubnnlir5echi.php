@@ -178,37 +178,15 @@
                             <div class="row">
                                 <div class="col-md-12">
 
-
-                                    <div class="form-content">
-
-                                        <!-- start textarea -->
-                                        <div class="unit">
-                                            <label class="label">Textarea</label>
-
-                                            <div class="input">
-                                                <label class="icon-left" for="textarea">
-                                                    <i class="fa fa-file-text-o"></i>
-                                                </label>
-                                                <textarea class="form-control" placeholder="your message..."
-                                                          spellcheck="false" id="textarea"></textarea>
-                                            </div>
-                                        </div>
-                                        <!-- end textarea -->
-
-                                    </div>
-                                    <!-- end /.content -->
-
                                     <div class="form-footer">
 
-                                        <button type="reset" class="btn btn-danger secondary-btn">Reset</button>
-                                        <button type="submit" class="btn btn-info primary-btn">Salva</button>
+                                        <button type="reset" class="btn btn-danger secondary-btn reset">Reset</button>
+                                        <button type="submit" class="btn btn-info primary-btn save">Salva</button>
                                         <button type="submit" class="btn btn-success primary-btn processing hide">
-                                            Processing...
+                                            Salvataggio in corso...
                                         </button>
                                     </div>
                                     <!-- end /.footer -->
-
-
                                 </div>
 
                             </div>

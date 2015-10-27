@@ -7,23 +7,22 @@
                 </div>
                 <div class="admin-user-info">
                     <ul>
-                        <li><a href="#">Kamrujaman Shohel</a></li>
-                        <li><a href="#"><?php echo $content; ?></a></li>
+                        <?php if ($userLogged): ?>
+                            <li><a href="#"><?php echo $user['name']; ?> <?php echo $user['surname']; ?></a></li>
+                        <?php endif; ?>
+
                     </ul>
                 </div>
             </div>
             <div class="admin-bar">
                 <ul>
-                    <li><a href="#"><i class="zmdi zmdi-power"></i>
+                    <li><a href="/logout"><i class="zmdi zmdi-power"></i>
                     </a>
                     </li>
-                    <li><a href="#"><i class="zmdi zmdi-account"></i>
+                    <li><a href="/account"><i class="zmdi zmdi-account"></i>
                     </a>
                     </li>
-                    <li><a href="#"><i class="zmdi zmdi-key"></i>
-                    </a>
-                    </li>
-                    <li><a href="#"><i class="zmdi zmdi-settings"></i>
+                    <li><a href="/setting"><i class="zmdi zmdi-settings"></i>
                     </a>
                     </li>
                 </ul>
