@@ -22,6 +22,9 @@ class Topic extends \DB\Cortex
         'owner' => array(
             'belongs-to-one' => '\Model\User'
         ),
+        'page' => array(
+            'belongs-to-one' => '\Model\Page'
+        ),
         'type' => array(
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,

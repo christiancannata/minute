@@ -195,6 +195,50 @@ $f3->route(
 
 
 $f3->route(
+    'POST /new-board',
+    function ($f3) {
+
+        $user = $f3->get('user');
+        $params = $f3->get("POST");
+
+        $page = new \Model\Page();
+
+        $topicPage = [];
+
+        $page->title = $params['title'];
+        $page->project = $params['project'];
+        $page->place = $params['place'];
+        $page->description = $params['description'];
+        $page->others = $params['others'];
+        $page->author = $user['_id'];
+        $page->minuteTaker = $params['minuteTaker'];
+
+        $now = new \DateTime();
+        $page->timestamp = $now->format("Y-m-d H:i:s");
+
+        $page->save();
+
+        foreach ($params['topic'] as $key => $topic) {
+            $topic = new \Model\Topic();
+
+            $topic->name = $params['topic'][$key];
+            $topic->type = $params['type'][$key];
+            $topic->due = $params['due'][$key];
+            $topic->owner = $params['owner'][$key];
+            $topic->note = $params['note'][$key];
+            $topic->page = $page;
+
+            $now = new \DateTime();
+            $topic->timestamp = $now->format("Y-m-d H:i:s");
+
+            $topic->save();
+            $topicPage[] = $topic;
+        }
+    }
+);
+
+
+$f3->route(
     'GET /logout',
     function ($f3) {
 

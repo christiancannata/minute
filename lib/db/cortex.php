@@ -1382,14 +1382,19 @@ class Cortex extends Cursor {
 	 */
 	protected function emit($event, $val=null)
 	{
+
 		if (isset($this->trigger[$event])) {
+
 			if (preg_match('/^[sg]et_/',$event)) {
 				$val = (is_string($f=$this->trigger[$event])
 					&& preg_match('/^[sg]et_/',$f))
 					? call_user_func(array($this,$event),$val)
 					: \Base::instance()->call($f,array($this,$val));
-			} else
+			} else{
+
 				$val = \Base::instance()->call($this->trigger[$event],array($this,$val));
+			}
+
 		} elseif (preg_match('/^[sg]et_/',$event) && method_exists($this,$event)) {
 			$this->trigger[] = $event;
 			$val = call_user_func(array($this,$event),$val);

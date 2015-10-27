@@ -16,21 +16,46 @@ class Page extends \DB\Cortex
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,
         ),
+        'project' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
+        'place' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
+        'others' => array(
+            'type' => \DB\SQL\Schema::DT_TEXT,
+            'nullable' => false,
+        ),
+        'description' => array(
+            'type' => \DB\SQL\Schema::DT_TEXT,
+            'nullable' => false,
+        ),
+        'minuteTaker' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
         'timestamp' => array(
+            'type' => \DB\SQL\Schema::DT_DATETIME
+        ),
+        'last_update_timestamp' => array(
             'type' => \DB\SQL\Schema::DT_DATETIME
         ),
         'author' => array(
             'belongs-to-one' => '\Model\User'
         ),
         'topics' => array(
-            'type' => \DB\SQL\Schema::DT_DATETIME
-        ),
+            'has-many' => array('\Model\Topic', 'page'),
+        )
 
     );
 
     protected $db = 'DB';
     protected $table = 'page';
     protected $fluid = true;      // triggers the SQL Fluid Mode, default: false
+
+
 
 
 

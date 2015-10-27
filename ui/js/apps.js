@@ -56,6 +56,25 @@ jQuery(document).ready(function ($) {
     // Rightbar Chat Height Calculation
     // **------------------------------
 
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+
+
     function ChatHeight() {
 
         var RightBarTabHeight = $(".rightbar-tab").outerHeight(),
@@ -2372,17 +2391,20 @@ jQuery(document).ready(function ($) {
 
     Offline.options = {checks: {xhr: {url: '/connection-test'}}};
 
+    var db = new PouchDB('pages');
+
+
     $(".check").click(function () {
         alert(Offline.state);
     });
 
-    $(".toggleMetaFields dd").click(function(){
-        $("."+$(this).attr("data-toggle")).toggle();
+    $(".toggleMetaFields dd").click(function () {
+        $("." + $(this).attr("data-toggle")).toggle();
         $(this).hide();
 
     });
 
-    $(document).on('click','.remove-task',function(){
+    $(document).on('click', '.remove-task', function () {
         $(this).closest("tr").remove();
         $("tr[data-type=todo].clone-row").removeClass("clone-row");
         $("tr[data-type=todo]:last-child").addClass("clone-row");
@@ -2390,15 +2412,19 @@ jQuery(document).ready(function ($) {
     });
 
 
-    $(document).on('click','tr[data-type=todo].clone-row td input',function(){
+    $(document).on('click', 'tr[data-type=todo].clone-row td input', function () {
         $(this).closest('tr').removeClass("clone-row");
-        $(this).closest('tr').after('<tr data-type="todo" >'+$(this).closest('tr').html()+'</tr>');
+        $(this).closest('tr').after('<tr data-type="todo" >' + $(this).closest('tr').html() + '</tr>');
         $("tr[data-type=todo]:last-child").addClass("clone-row");
     });
 
-    $("select.todo").change(function(){
-        var color=$(this).find("option:selected").css("background-color");
-        $(this).css("background-color",color);
+    var color = $(".todo").find("option:selected").css("background-color");
+    $(".todo").css("background-color", color);
+
+
+    $(document).on('change', "select.todo", function () {
+        var color = $(this).find("option:selected").attr("data-color");
+        $(this).css("background-color", color);
     });
 
 
@@ -2406,11 +2432,65 @@ jQuery(document).ready(function ($) {
 
     var loginChannel = pusher.subscribe('private-login');
 
-    loginChannel.bind('login-success', function(notification){
+    loginChannel.bind('login-success', function (notification) {
 
 
         var message = notification.message;
         alert(message);
+
+
+    });
+
+
+    $(".j-forms").submit(function (e) {
+        e.preventDefault();
+
+
+        var lastRowValid = $("tr[data-type=todo]:last-child");
+
+        if (lastRowValid.find(".topic input[type=text]").val() == "") {
+            lastRowValid.remove();
+            $("tr[data-type=todo]:last-child").addClass("clone-row");
+        }
+
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+
+
+        if (Offline.state == "up" ) {
+            var formData = $(this).serializeArray();
+
+            // process the form
+            $.ajax({
+                type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                url: $(this).attr('action'), // the url where we want to POST
+                data: formData, // our data object
+                dataType: 'json', // what type of data do we expect back from the server
+                encode: true
+            })
+                // using the done promise callback
+                .success(function (data) {
+
+                    // log data to the console so we can see
+                    console.log(data);
+
+                    // here we will handle errors and validation messages
+                });
+        } else {
+
+
+            var formData = $(this).serializeObject();
+
+            db.post(formData).then(function (response) {
+                console.log(response);
+            }).catch(function (err) {
+                console.log(err);
+            });
+
+
+
+        }
 
 
     });

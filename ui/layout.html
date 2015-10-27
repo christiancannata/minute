@@ -111,7 +111,7 @@
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
 <script src="ui/js/lib/notify.min.js"></script>
-
+<script src="ui/js/lib/pouchdb-4.0.3.min.js"></script>
 <script src="ui/js/apps.js"></script>
 </body>
 

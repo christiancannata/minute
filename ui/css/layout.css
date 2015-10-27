@@ -2982,25 +2982,26 @@ tr[data-type=todo]:hover .remove-task{
 
 select.todo{
   color:white;
+  border:none;
 }
 
 
 select.todo option[value="agenda"]{
-  background: red;
+  background-color: red;
 }
 
 select.todo option[value="decision"]{
-  background: blue;
+  background-color:  blue;
 }
 
 select.todo option[value="done"]{
-  background: lightblue;
+  background-color:  lightblue;
 }
 
 select.todo option[value="info"]{
-  background: orange;
+  background-color:  orange;
 }
 
 select.todo option[value="idea"]{
-  background: darkorange;
+  background-color:  darkorange;
 }
