@@ -108,7 +108,9 @@
 <script src="ui/js/lib/moment.js"></script>
 <script src="ui/js/lib/daterangepicker.js"></script>
 
+<script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
+<script src="ui/js/lib/notify.min.js"></script>
 
 <script src="ui/js/apps.js"></script>
 </body>

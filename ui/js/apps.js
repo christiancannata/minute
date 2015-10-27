@@ -2401,5 +2401,20 @@ jQuery(document).ready(function ($) {
         $(this).css("background-color",color);
     });
 
+
+    var pusher = new Pusher('088902d062daa269f399');
+
+    var loginChannel = pusher.subscribe('private-login');
+
+    loginChannel.bind('login-success', function(notification){
+
+
+        var message = notification.message;
+        alert(message);
+
+
+    });
+
+
 })
 ;

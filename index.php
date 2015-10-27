@@ -32,7 +32,6 @@ $f3->set('pusher_api_key', '088902d062daa269f399');
 $f3->set('pusher_app_secret', 'f173a5638c6189c3ffd4');
 
 
-
 if (!$f3->exists('user')) {
     if ($f3->exists('COOKIE.__minuteU')) {
         $f3->set('user', json_decode(base64_decode($f3->get('COOKIE.__minuteU')), true));
@@ -142,6 +141,26 @@ $f3->route(
             $f3->set('heder', 'header.html');
             $f3->set('bodyClass', 'leftbar-view');
             $f3->set('content', 'dashboard.html');
+
+
+            if (!$f3->exists('SESSION.__loginSent')) {
+
+                $pusher = new Services\Pusher(
+                    $f3->get('pusher_api_key'),
+                    $f3->get('pusher_app_secret'),
+                    $f3->get('pusher_app_id'),
+                    array('encrypted' => true)
+                );
+
+                $params = array(
+                    "name" => $f3->get('user')->username,
+                    "message" => json_encode($f3->get('user')),
+                );
+
+                $pusher->trigger('private-login', 'login-success', $params, null, true);
+                $f3->set('SESSION.__loginSent', true);
+            }
+
             echo Template::instance()->render('layout.html');
 
         } else {
@@ -157,20 +176,6 @@ $f3->route(
     function ($f3) {
         if ($f3->get('userLogged')) {
 
-
-
-            $pusher = new Services\Pusher(
-                $f3->get('pusher_api_key'),
-                $f3->get('pusher_app_secret'),
-                $f3->get('pusher_app_id'),
-                array('encrypted' => true)
-            );
-
-            $params = array(
-                "message" => " ha effettuato l'accesso.",
-            );
-
-            var_dump($pusher->trigger('private-login', 'my_event', $params,null,true));
 
             $f3->set('footer', 'footer.html');
             $f3->set('header', 'header.html');
@@ -229,6 +234,44 @@ $f3->route(
 
 
 $f3->route(
+    'POST /pusher/auth',
+    function ($f3) {
+
+        if ($f3->get('userLogged')) {
+            $pusher = new Services\Pusher(
+                $f3->get('pusher_api_key'),
+                $f3->get('pusher_app_secret'),
+                $f3->get('pusher_app_id')
+            );
+            echo $pusher->socket_auth($f3->get('POST.channel_name'), $f3->get('POST.socket_id'));
+        } else {
+            header('', true, 403);
+            echo "Forbidden";
+        }
+
+    }
+);
+$f3->route(
+    'POST /pusher/presence-channel',
+    function ($f3) {
+
+        if ($f3->get('userLogged')) {
+            $pusher = new Services\Pusher(
+                $f3->get('pusher_api_key'),
+                $f3->get('pusher_app_secret'),
+                $f3->get('pusher_app_id')
+            );
+            echo $pusher->socket_auth($f3->get('POST.channel_name'), $f3->get('POST.socket_id'));
+        } else {
+            header('', true, 403);
+            echo "Forbidden";
+        }
+
+    }
+);
+
+
+$f3->route(
     'POST /login',
     function ($f3) {
 
@@ -254,16 +297,6 @@ $f3->route(
             $inTwoMonths = 60 * 60 * 24 * 60 + time();
             $f3->set('COOKIE.__minuteU', base64_encode(json_encode($user->cast())), $inTwoMonths);
 
-            $pusher = new Services\Pusher(
-                $f3->get('pusher_api_key'),
-                $f3->get('pusher_app_secret'),
-                $f3->get('pusher_app_id'),
-                array('encrypted' => true)
-            );
-
-            $params = array(
-                "message" => $username." ha effettuato l'accesso.",
-            );
 
             echo "<div class='success-message'>Login effettuato con successo!</div>";
             die();
