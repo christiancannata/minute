@@ -222,6 +222,7 @@ $f3->route(
                 $topicPage[] = $topic;
             }
         }
+
         echo json_encode(["response"=>"ok"]);
 
     }

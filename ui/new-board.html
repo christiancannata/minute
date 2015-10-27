@@ -73,33 +73,33 @@
                         </header>
 
                         <div class="meta">
-                            <table class="table">
+                            <table class="table description-page">
                                 <tbody>
                                 <tr class="minuteTaker">
                                     <th>Minute Taker</th>
                                     <td>
-                                        <input contenteditable="" class="content-editable" type="text"
+                                        <input  contenteditable="" class="content-editable" type="text"
                                                name="minuteTaker" placeholder="your name and email address">
                                     </td>
                                 </tr>
                                 <tr class="attendees">
                                     <th>Attendees</th>
                                     <td>
-                                        <input contenteditable="" class="content-editable" type="text"
+                                        <input style="width:100%" contenteditable="" class="content-editable" type="text"
                                                name="minuteTaker" placeholder="names and email addresses">
                                     </td>
                                 </tr>
                                 <tr style="display:none;" class="others">
                                     <th>Others</th>
                                     <td>
-                                        <input contenteditable="" class="content-editable" type="text" name="others"
+                                        <input style="width:100%" contenteditable="" class="content-editable" type="text" name="others"
                                                placeholder="names and email addresses">
                                     </td>
                                 </tr>
                                 <tr style="display:none;" class="description">
                                     <th>About this meeting</th>
                                     <td>
-                                        <input contenteditable="" class="content-editable" type="text"
+                                        <input style="width:100%" contenteditable="" class="content-editable" type="text"
                                                name="description" placeholder="description">
 
                                     </td>

@@ -2968,7 +2968,11 @@
 }
 
 .remove-task{
-  display:none
+  display:none;
+  cursor:pointer;
+}
+td.actions{
+  width:30px;
 }
 tr[data-type=todo]:hover .remove-task{
   display:block
@@ -3004,4 +3008,24 @@ select.todo option[value="info"]{
 
 select.todo option[value="idea"]{
   background-color:  darkorange;
+}
+
+.description-page tr th{
+  width:30%;
+}
+
+.description-page tr td{
+  width:70%;
+}
+
+.description-page tr td input{
+  width:100%;
+}
+
+.actions{
+  width:30px !important;
+}
+input[name=title]{
+  width:100%;
+  font-size: 40px;
 }
