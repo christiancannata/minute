@@ -2986,6 +2986,7 @@ tr[data-type=todo]:hover .remove-task{
 
 select.todo{
   color:white;
+  cursor:pointer;
   border:none;
 }
 
@@ -3022,9 +3023,7 @@ select.todo option[value="idea"]{
   width:100%;
 }
 
-.actions{
-  width:30px !important;
-}
+
 input[name=title]{
   width:100%;
   font-size: 40px;
@@ -3035,7 +3034,6 @@ input[name=title]{
   font-weight: bold;
   font-size:12px;
 }
-
-.minutes thead th.note{
-  width:40%;
+.minutes .actions{
+  width:30px !important;
 }

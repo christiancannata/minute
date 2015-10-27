@@ -163,7 +163,9 @@
                                         </div>
                                     </td>
                                     <td class="actions">
-                                        <span data-remove="" class="remove-task">×</span>
+                                        <a class="row-delete remove-task" href="#">
+                                            <span class="zmdi zmdi-close"></span>
+                                        </a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -182,6 +184,7 @@
 
                                         <button type="reset" class="btn btn-danger secondary-btn reset">Reset</button>
                                         <button type="submit" class="btn btn-info primary-btn save">Salva</button>
+                                        <button type="submit" class="btn btn-info primary-btn save">Salva e Invia</button>
                                         <button type="submit" class="btn btn-success primary-btn processing hide">
                                             Salvataggio in corso...
                                         </button>

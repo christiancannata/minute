@@ -2404,7 +2404,8 @@ jQuery(document).ready(function ($) {
 
     });
 
-    $(document).on('click', '.remove-task', function () {
+    $(document).on('click', '.remove-task', function (e) {
+        e.preventDefault();
         var rows=$(".minutes table tbody tr").length;
 
         if(rows>1){
