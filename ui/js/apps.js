@@ -695,6 +695,7 @@ jQuery(document).ready(function ($) {
             daysOfWeekDisabled: "6",
             calendarWeeks: true,
             autoclose: true,
+            format: 'dd/mm/yyyy',
             todayHighlight: true
         });
         $('.cal-date-picker').DatePicker({
@@ -2416,20 +2417,34 @@ jQuery(document).ready(function ($) {
 
     });
 
+    $(document).on('click', '.calendar', function (e) {
+        e.preventDefault();
+        var calendar=$(this).parent().find('.input-date-picker');
+        calendar.DatePicker("show");
+    });
+
 
     $(document).on('click', 'tr[data-type=todo].clone-row td input', function () {
         $(this).closest('tr').removeClass("clone-row");
         $(this).closest('tr').after('<tr data-type="todo" >' + $(this).closest('tr').html() + '</tr>');
         $("tr[data-type=todo]:last-child").addClass("clone-row");
+        $('.input-date-picker').DatePicker({
+            orientation: "bottom",
+            daysOfWeekDisabled: "6",
+            calendarWeeks: true,
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd/mm/yyyy',
+        });
     });
 
-    var color = $(".todo").find("option:selected").css("background-color");
+   /* var color = $(".todo").find("option:selected").css("background-color");
     $(".todo").css("background-color", color);
-
+*/
 
     $(document).on('change', "select.todo", function () {
-        var color = $(this).find("option:selected").attr("data-color");
-        $(this).css("background-color", color);
+       /* var color = $(this).find("option:selected").attr("data-color");
+        $(this).css("background-color", color); */
     });
 
 
