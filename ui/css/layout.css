@@ -3029,3 +3029,13 @@ input[name=title]{
   width:100%;
   font-size: 40px;
 }
+
+
+.minutes thead tr th{
+  font-weight: bold;
+  font-size:12px;
+}
+
+.minutes thead th.note{
+  width:40%;
+}
