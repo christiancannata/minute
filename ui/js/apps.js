@@ -2451,6 +2451,7 @@ jQuery(document).ready(function ($) {
     var pusher = new Pusher('088902d062daa269f399');
 
     var loginChannel = pusher.subscribe('private-login');
+    var loginChannel = pusher.subscribe('private-activity');
 
     loginChannel.bind('login-success', function (notification) {
 
@@ -2460,6 +2461,16 @@ jQuery(document).ready(function ($) {
 
 
     });
+
+    loginChannel.bind('create-board', function (notification) {
+
+
+
+      console.log(notification);
+
+
+    });
+
 
 
     $(".j-forms").submit(function (e) {

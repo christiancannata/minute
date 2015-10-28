@@ -32,6 +32,17 @@ $f3->set('pusher_app_id', '150225');
 $f3->set('pusher_api_key', '088902d062daa269f399');
 $f3->set('pusher_app_secret', 'f173a5638c6189c3ffd4');
 
+if(!$f3->exists('pusher')){
+    $pusher = new Services\Pusher(
+        $f3->get('pusher_api_key'),
+        $f3->get('pusher_app_secret'),
+        $f3->get('pusher_app_id'),
+        array('encrypted' => true)
+    );
+
+    $f3->set('pusher',$pusher);
+}
+
 
 if (!$f3->exists('user')) {
     if ($f3->exists('COOKIE.__minuteU')) {
@@ -137,12 +148,8 @@ $f3->route(
 
             if (!$f3->exists('SESSION.__loginSent')) {
 
-                $pusher = new Services\Pusher(
-                    $f3->get('pusher_api_key'),
-                    $f3->get('pusher_app_secret'),
-                    $f3->get('pusher_app_id'),
-                    array('encrypted' => true)
-                );
+
+                $pusher=$f3->get('pusher');
 
                 $params = array(
                     "name" => $f3->get('user')->username,
@@ -225,9 +232,20 @@ $f3->route(
                 $topic->timestamp = $now->format("Y-m-d H:i:s");
 
                 $topic->save();
-                $topicPage[] = $topic;
             }
         }
+
+
+        $pusher=$f3->get('pusher');
+
+        $user=$f3->get('user');
+        $params = array(
+            "name" => $user['email'],
+            "message" => json_encode($page->cast()),
+        );
+
+        $pusher->trigger('private-activity', 'crate-board', $params, null, true);
+
 
         echo json_encode(["response"=>"ok"]);
 
