@@ -5,7 +5,6 @@
  * Date: 22/10/15
  * Time: 18:08
  */
-
 namespace Model;
 
 class Page extends \DB\Cortex

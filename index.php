@@ -250,23 +250,74 @@ $f3->route(
     }
 );
 
+
+
+
 $f3->route(
     'GET /login',
-    function ($f3) {
-
-        if ($f3->get('userLogged')) {
-            $f3->reroute('/dashboard');
-        }
-
-
-        $f3->set('bodyClass', 'login social-login');
-
-        echo View::instance()->render('login.html');
-
-
-    }
+    '\Controller\LoginController::getLoginAction'
 );
 
+function from_camel_case($input) {
+    preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
+    $ret = $matches[0];
+    foreach ($ret as &$match) {
+        $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
+    }
+    return implode('/', $ret);
+}
+
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+
+$annotations = new \Services\Annotations();
+foreach (glob("app/controller/*Controller.php") as $filename)
+{
+    $parsed = get_string_between($filename, 'controller/', '.php');
+
+    $namespace="Controller";
+
+    $class_methods = get_class_methods ( "\\".$namespace."\\".$parsed );
+
+    foreach($class_methods as $method){
+
+        $result = $annotations->getMethodAnnotations("\\".$namespace."\\".$parsed,$method);
+
+
+        if(isset($result['Route']) && isset($result['Route'][0]['name']) && isset($result['Route'][0]['method']) ){
+
+            $methodAnnotation=$result['Route'][0]['method'];
+            $nameAnnotation=$result['Route'][0]['name'];
+
+            $f3->route(
+                $methodAnnotation." ".$nameAnnotation,
+                "\\".$namespace."\\".$parsed."::".$method
+            );
+
+        }else{
+            if(strstr($method,"get") || strstr($method,"post") || strstr($method,"delete") || strstr($method,"get")){
+                $method=str_replace("Action","",$method);
+
+            }else{
+
+                /*  print_r($result);
+                  die();
+                  $method=str_replace("Action","",$method);
+                  die(var_dump(from_camel_case($method)));*/
+            }
+
+        }
+
+    }
+
+
+}
 
 $f3->route(
     'POST /pusher/auth',
