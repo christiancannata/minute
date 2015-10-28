@@ -1,5 +1,5 @@
 <?php
-
+namespace Services;
 /*
 		Pusher PHP Library
 	/////////////////////////////////
@@ -23,6 +23,8 @@
 class PusherException extends \Exception
 {
 }
+
+
 
 class PusherInstance {
 

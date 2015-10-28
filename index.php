@@ -1,5 +1,6 @@
 <?php
 
+
 // Kickstart the framework
 $f3 = require('lib/base.php');
 
@@ -26,8 +27,9 @@ $f3->set(
 );
 
 
+$f3->set('AUTOLOAD', 'app/');
 
-
+$f3->set('SERIALIZER', 'json');
 
 
 
@@ -294,6 +296,42 @@ $f3->route(
 );
 
 
+
+$f3->route(
+    'GET /login',
+    function ($f3) {
+
+        if ($f3->get('userLogged')) {
+            $f3->reroute('/dashboard');
+        }
+
+
+        $f3->set('bodyClass', 'login social-login');
+
+        echo \View::instance()->render('login.html');
+
+    }
+);
+
+$f3->route(
+    'GET /logout',
+    function ($f3) {
+
+        $f3->clear('COOKIE.__minuteU');
+        $f3->clear('user');
+
+
+        $f3->set('bodyClass', 'login social-login');
+
+        $f3->reroute('/login');
+
+    }
+);
+
+
+
+
+
 $f3->route(
     'POST /login',
     function ($f3) {
@@ -328,8 +366,10 @@ $f3->route(
     }
 );
 
+
+
 if(!$f3->exists('pusher')){
-    $pusher = new \Pusher(
+    $pusher = new \Services\Pusher(
         $f3->get('pusher_api_key'),
         $f3->get('pusher_app_secret'),
         $f3->get('pusher_app_id'),
@@ -342,6 +382,4 @@ if(!$f3->exists('pusher')){
 $f3->map('/user/@user', 'User');
 
 
-$routing=new Routing($f3);
-$routing->buildRouting();
 $f3->run();

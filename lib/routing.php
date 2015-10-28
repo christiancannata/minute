@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: christiancannata
- * Date: 28/10/15
- * Time: 15:27
- */
+/*
 class Routing
 {
 
@@ -64,10 +59,7 @@ class Routing
 
                     } else {
 
-                        /*  print_r($result);
-                          die();
-                          $method=str_replace("Action","",$method);
-                          die(var_dump(from_camel_case($method)));*/
+
                     }
 
                 }
@@ -109,4 +101,4 @@ class Routing
 
         return substr($string, $ini, $len);
     }
-}
+} */

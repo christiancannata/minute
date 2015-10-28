@@ -5,7 +5,7 @@
  * Date: 22/10/15
  * Time: 18:08
  */
-
+/*
 namespace Controller;
 
 class LoginController
@@ -44,7 +44,7 @@ class LoginController
      *
      * @Route(method="GET", name = "/checkUserVa")
      */
-
+/*
     static function checkUserEmailAction($f3,$args)
     {
         if ($f3->get('userLogged')) {
@@ -59,3 +59,4 @@ class LoginController
 
     }
 }
+ */
