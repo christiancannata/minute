@@ -253,18 +253,14 @@ $f3->route(
 
 
 
-$f3->route(
-    'GET /login',
-    '\Controller\LoginController::getLoginAction'
-);
 
-function from_camel_case($input) {
+function from_camel_case($input,$separator="/") {
     preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
     $ret = $matches[0];
     foreach ($ret as &$match) {
         $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
     }
-    return implode('/', $ret);
+    return implode($separator, $ret);
 }
 
 function get_string_between($string, $start, $end){
@@ -302,7 +298,12 @@ foreach (glob("app/controller/*Controller.php") as $filename)
 
         }else{
             if(strstr($method,"get") || strstr($method,"post") || strstr($method,"delete") || strstr($method,"get")){
-                $method=str_replace("Action","",$method);
+                $route=explode("/",from_camel_case($method));
+
+                $f3->route(
+                    strtoupper($route[0])." /".$route[1],
+                    "\\".$namespace."\\".$parsed."::".$method
+                );
 
             }else{
 
