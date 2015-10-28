@@ -236,21 +236,6 @@ $f3->route(
 
 
 $f3->route(
-    'GET /logout',
-    function ($f3) {
-
-
-        $f3->clear('COOKIE.__minuteU');
-        $f3->clear('user');
-
-
-        $f3->set('bodyClass', 'login social-login');
-
-        $f3->reroute('/login');
-    }
-);
-
-$f3->route(
     'HEAD /connection-test',
     function ($f3) {
     }
