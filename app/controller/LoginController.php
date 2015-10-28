@@ -8,8 +8,6 @@
 
 namespace Controller;
 
-use View;
-
 class LoginController
 {
 
@@ -22,7 +20,7 @@ class LoginController
 
         $f3->set('bodyClass', 'login social-login');
 
-        echo View::instance()->render('login.html');
+        echo \View::instance()->render('login.html');
 
 
     }
@@ -56,7 +54,7 @@ class LoginController
 
         $f3->set('bodyClass', 'login social-login');
 
-        echo View::instance()->render('login.html');
+        echo \View::instance()->render('login.html');
 
 
     }

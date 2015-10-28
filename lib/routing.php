@@ -1,6 +1,5 @@
 <?php
 
-use Services\Annotations;
 /**
  * Created by PhpStorm.
  * User: christiancannata
@@ -15,14 +14,20 @@ class Routing
 
     public function __construct($f3)
     {
-        $this->annotationService = new Annotations();
+        $this->annotationService = new \Annotations();
 
         $this->f3=$f3;
     }
 
     public function buildRouting()
     {
-        foreach (glob("app/controller/*Controller.php") as $filename) {
+
+
+        foreach (glob("./app/controller/*Controller.php") as $filename) {
+
+            require($filename);
+
+
             $parsed =  $this->get_string_between($filename, 'controller/', '.php');
 
             $namespace = "Controller";

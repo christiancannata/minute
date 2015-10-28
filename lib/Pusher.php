@@ -1,5 +1,5 @@
 <?php
-namespace Services;
+
 /*
 		Pusher PHP Library
 	/////////////////////////////////

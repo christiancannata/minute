@@ -1,8 +1,12 @@
 <?php
 
-
 // Kickstart the framework
 $f3 = require('lib/base.php');
+
+$f3->config('config.ini');
+
+
+
 
 
 $f3->set('DEBUG', 1);
@@ -15,33 +19,23 @@ if ((float)PCRE_VERSION < 7.9) {
 $f3->set(
     'DB',
     new DB\SQL(
-        'mysql:host=localhost;port=3306;dbname=test',
-        'root',
-        ''
+        'mysql:host='.$f3->get('DB_HOST').';port='.$f3->get('DB_PORT').';dbname='.$f3->get('DB_NAME'),
+        $f3->get('DB_USER'),
+        $f3->get('DB_PASSWORD')
     )
 );
 
 
-$f3->set('AUTOLOAD', 'app/');
 
-$f3->set('SERIALIZER', 'json');
+
+
+
 
 $f3->set('userLogged', false);
 
 $f3->set('pusher_app_id', '150225');
 $f3->set('pusher_api_key', '088902d062daa269f399');
 $f3->set('pusher_app_secret', 'f173a5638c6189c3ffd4');
-
-if(!$f3->exists('pusher')){
-    $pusher = new Services\Pusher(
-        $f3->get('pusher_api_key'),
-        $f3->get('pusher_app_secret'),
-        $f3->get('pusher_app_id'),
-        array('encrypted' => true)
-    );
-
-    $f3->set('pusher',$pusher);
-}
 
 
 if (!$f3->exists('user')) {
@@ -53,12 +47,8 @@ if (!$f3->exists('user')) {
 }
 
 
-// Load configuration
-$f3->config('config.ini');
 
 
-$routing=new Routing($f3);
-$routing->buildRouting();
 
 
 $f3->route(
@@ -338,8 +328,20 @@ $f3->route(
     }
 );
 
+if(!$f3->exists('pusher')){
+    $pusher = new \Pusher(
+        $f3->get('pusher_api_key'),
+        $f3->get('pusher_app_secret'),
+        $f3->get('pusher_app_id'),
+        array('encrypted' => true)
+    );
+
+    $f3->set('pusher',$pusher);
+}
 
 $f3->map('/user/@user', 'User');
 
 
+$routing=new Routing($f3);
+$routing->buildRouting();
 $f3->run();
