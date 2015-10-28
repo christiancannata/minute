@@ -3155,9 +3155,7 @@ div[data-meeting] .minutes tbody td.due .calendar {
   top: -5px;
   transition: opacity 0.1s ease 0s;
 }
-div[data-meeting] .minutes tbody td.due .calendar svg * {
-  fill: #202020;
-}
+
 div[data-meeting] .minutes tbody td.due .calendar:focus, div[data-meeting] .minutes tbody td.due .calendar:hover {
   opacity: 1 !important;
 }
@@ -3168,7 +3166,7 @@ div[data-meeting][data-mode="edit"] .minutes tbody td.due .calendar {
   display: block;
 }
 div[data-meeting][data-mode="edit"] .minutes tbody td.due .calendar:focus, div[data-meeting][data-mode="edit"] .minutes tbody td.due .calendar:hover {
-  color: #222;
+  color: #139c9b;
   opacity: 0.5;
   text-decoration: none;
 }
@@ -3183,3 +3181,4 @@ div[data-meeting][data-mode="edit"] .minutes tbody [name="dueAt"]:focus + .calen
 .content-disabled{
   background:none !important;
 }
+
