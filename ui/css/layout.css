@@ -3152,7 +3152,7 @@ div[data-meeting] .minutes tbody td.due .calendar {
   padding: 4px;
   position: absolute;
   right: 0;
-  top: 3px;
+  top: -5px;
   transition: opacity 0.1s ease 0s;
 }
 div[data-meeting] .minutes tbody td.due .calendar svg * {
@@ -3174,4 +3174,12 @@ div[data-meeting][data-mode="edit"] .minutes tbody td.due .calendar:focus, div[d
 }
 div[data-meeting][data-mode="edit"] .minutes tbody [name="dueAt"]:focus + .calendar, div[data-meeting][data-mode="edit"] .minutes tbody tr:hover .calendar {
   opacity: 0.5;
+}
+
+.calendar i{
+  font-size:25px
+}
+
+.content-disabled{
+  background:none !important;
 }

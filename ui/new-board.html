@@ -154,12 +154,10 @@
                                     </td>
                                     <td class="due">
                                         <div>
-                                            <input type="text" id="due1" name="due[]" class="content-editable input-date-picker"
-                                                   placeholder="gg/mm/aaaa" readonly>
+                                            <input type="text" id="due1" name="due[]" class="content-editable input-date-picker content-disabled"
+                                                   placeholder="gg/mm/aaaa" readonly disabled>
                                             <a class="calendar">
-                                                <svg viewBox="0 0 16 16" height="16" width="16" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                    <path fill="#ffffff" d="M14 2h-1.5v0.5c0 0.551-0.449 1-1 1s-1-0.449-1-1v-0.5h-5v0.5c0 0.551-0.449 1-1 1s-1-0.449-1-1v-0.5h-1.5c-0.55 0-1 0.45-1 1v11c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1v-11c0-0.55-0.45-1-1-1zM14 13.998c-0.001 0.001-0.001 0.001-0.002 0.002h-11.996c-0.001-0.001-0.001-0.001-0.002-0.002v-8.998h12v8.998zM4.5 3c0.276 0 0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5s-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5zM11.5 3c0.276 0 0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5s-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5zM9 6h-5v1h4v2h-4v1h4v2h-4v1h5zM11 13h1v-7h-2v1h1zM13.625 15.375h-11.25c-0.55 0-1-0.325-1-0.875v0.5c0 0.55 0.45 1 1 1h11.25c0.55 0 1-0.45 1-1v-0.5c0 0.55-0.45 0.875-1 0.875z"/>
-                                                </svg>
+                                                <i class="zmdi zmdi-calendar"></i>
                                             </a>
                                         </div>
                                     </td>
