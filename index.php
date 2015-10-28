@@ -22,7 +22,7 @@ $f3->set(
 );
 
 
-$f3->set('AUTOLOAD', 'autoload/');
+$f3->set('AUTOLOAD', 'app/');
 $f3->set('SERIALIZER', 'json');
 
 $f3->set('userLogged', false);
