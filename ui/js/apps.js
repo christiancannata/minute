@@ -2462,7 +2462,7 @@ jQuery(document).ready(function ($) {
     });
 
 
-    var pusher = new Pusher('088902d062daa269f399');
+    var pusher = new Pusher('088902d062daa269f399', { authEndpoint: './pusher/auth' });
 
     var loginChannel = pusher.subscribe('private-login');
     var loginChannel = pusher.subscribe('private-activity');

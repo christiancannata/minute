@@ -7,7 +7,7 @@
                 </div>
                 <div class="active-conversation">
                     <div class="chat-avatar">
-                        <img src="/ui/images/avatar/amarkdalen.jpg" alt="user">
+                        <img src="./ui/images/avatar/amarkdalen.jpg" alt="user">
                     </div>
                     <div class="chat-user-status">
                         <ul>
@@ -98,7 +98,7 @@
                         <li>
                             <div data-trigger="hover" title="Robertoortiz" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/robertoortiz.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/robertoortiz.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -109,14 +109,14 @@
                                         </ul>
                                         </div>
                                         </div>
-                                        " data-placement="left"><span class="chat-avatar"><img src="/ui/images/avatar/robertoortiz.jpg" alt="Avatar"></span><span class="chat-u-info">Adellecharles<cite>New York</cite></span>
+                                        " data-placement="left"><span class="chat-avatar"><img src="./ui/images/avatar/robertoortiz.jpg" alt="Avatar"></span><span class="chat-u-info">Adellecharles<cite>New York</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
                         <li class="chat-u-online">
                             <div data-trigger="hover" title="Kurafire" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/kurafire.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/kurafire.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -127,14 +127,14 @@
                                         </ul>
                                         </div>
                                         </div>
-                                        " data-placement="left"><span class="chat-avatar"><img src="/ui/images/avatar/kurafire.jpg" alt="Avatar"></span><span class="chat-u-info">Kurafire<cite>New York</cite></span>
+                                        " data-placement="left"><span class="chat-avatar"><img src="./ui/images/avatar/kurafire.jpg" alt="Avatar"></span><span class="chat-u-info">Kurafire<cite>New York</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
                         <li class="chat-u-away">
                             <div data-trigger="hover" title="Mikeluby" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/mikeluby.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/mikeluby.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -146,14 +146,14 @@
                                         </div>
                                         </div>
                                         " data-placement="left">
-                                <span class="chat-avatar"><img src="/ui/images/avatar/mikeluby.jpg" alt="Avatar"></span><span class="chat-u-info">Bobbyjkane<cite>London City</cite></span>
+                                <span class="chat-avatar"><img src="./ui/images/avatar/mikeluby.jpg" alt="Avatar"></span><span class="chat-u-info">Bobbyjkane<cite>London City</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
                         <li class="chat-u-busy">
                             <div data-trigger="hover" title="Joostvanderree" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/joostvanderree.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/joostvanderree.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -165,7 +165,7 @@
                                         </div>
                                         </div>
                                         " data-placement="left">
-                                <span class="chat-avatar"><img src="/ui/images/avatar/joostvanderree.jpg" alt="Avatar"></span><span class="chat-u-info">Joostvanderree<cite>New York</cite></span>
+                                <span class="chat-avatar"><img src="./ui/images/avatar/joostvanderree.jpg" alt="Avatar"></span><span class="chat-u-info">Joostvanderree<cite>New York</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
@@ -175,7 +175,7 @@
                         <li>
                             <div data-trigger="hover" title="Kevinthompson" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/Kevinthompson.html' alt='Avatar'>
+                                        <img src=./ui/images/avatar/Kevinthompson.html' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -187,14 +187,14 @@
                                         </div>
                                         </div>
                                         " data-placement="left">
-                                <span class="chat-avatar"><img src="/ui/images/avatar/kevinthompson.jpg" alt="Avatar"></span><span class="chat-u-info">Kevinthompson<cite>Scotland</cite></span>
+                                <span class="chat-avatar"><img src="./ui/images/avatar/kevinthompson.jpg" alt="Avatar"></span><span class="chat-u-info">Kevinthompson<cite>Scotland</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
                         <li class="chat-u-online">
                             <div data-trigger="hover" title="Mds" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/mds.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/mds.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -206,14 +206,14 @@
                                         </div>
                                         </div>
                                         " data-placement="left">
-                                <span class="chat-avatar"><img src="/ui/images/avatar/mds.jpg" alt="Avatar"></span><span class="chat-u-info">Mds<cite>South West, England</cite></span>
+                                <span class="chat-avatar"><img src="./ui/images/avatar/mds.jpg" alt="Avatar"></span><span class="chat-u-info">Mds<cite>South West, England</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
                         <li>
                             <div data-trigger="hover" title="Mko" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/mko.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/mko.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -225,14 +225,14 @@
                                         </div>
                                         </div>
                                         " data-placement="left">
-                                <span class="chat-avatar"><img src="/ui/images/avatar/mko.jpg" alt="Avatar"></span><span class="chat-u-info">Mko<cite>New York</cite></span>
+                                <span class="chat-avatar"><img src="./ui/images/avatar/mko.jpg" alt="Avatar"></span><span class="chat-u-info">Mko<cite>New York</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
                         <li>
                             <div data-trigger="hover" title="Coreyweb" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/coreyweb.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/coreyweb.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -244,14 +244,14 @@
                                         </div>
                                         </div>
                                         " data-placement="left">
-                                <span class="chat-avatar"><img src="/ui/images/avatar/coreyweb.jpg" alt="Avatar"></span><span class="chat-u-info">Coreyweb<cite>Northern Ireland</cite></span>
+                                <span class="chat-avatar"><img src="./ui/images/avatar/coreyweb.jpg" alt="Avatar"></span><span class="chat-u-info">Coreyweb<cite>Northern Ireland</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
                         <li>
                             <div data-trigger="hover" title="Amarkdalen" data-content="<div class='chat-user-info'>
                                         <div class='chat-user-avatar'>
-                                        <img src='images/avatar/amarkdalen.jpg' alt='Avatar'>
+                                        <img src=./ui/images/avatar/amarkdalen.jpg' alt='Avatar'>
                                         </div>
                                         <div class='chat-user-details'>
                                         <ul>
@@ -263,7 +263,7 @@
                                         </div>
                                         </div>
                                         " data-placement="left">
-                                <span class="chat-avatar"><img src="/ui/images/avatar/amarkdalen.jpg" alt="Avatar"></span><span class="chat-u-info">Oykun<cite>New York</cite></span>
+                                <span class="chat-avatar"><img src="./ui/images/avatar/amarkdalen.jpg" alt="Avatar"></span><span class="chat-u-info">Oykun<cite>New York</cite></span>
                             </div>
                             <span class="chat-u-status"><i class="fa fa-circle"></i></span>
                         </li>
@@ -321,9 +321,9 @@
                                 </div>
                                 <div class="activities-post">
                                     <ul class="new-image-lists">
-                                        <li><a href="#"><img src="/ui/images/img-1-thumb.jpg" alt="image"></a></li>
-                                        <li><a href="#"><img src="/ui/images/img-2-thumb.jpg" alt="image"></a></li>
-                                        <li><a href="#"><img src="/ui/images/img-3-thumb.jpg" alt="image"></a></li>
+                                        <li><a href="#"><img src="./ui/images/img-1-thumb.jpg" alt="image"></a></li>
+                                        <li><a href="#"><img src="./ui/images/img-2-thumb.jpg" alt="image"></a></li>
+                                        <li><a href="#"><img src="./ui/images/img-3-thumb.jpg" alt="image"></a></li>
                                         <li><a href="#" class="more-list"><i class="zmdi zmdi-more-horiz"></i></a></li>
                                     </ul>
                                 </div>
@@ -340,9 +340,9 @@
                                 </div>
                                 <div class="activities-post">
                                     <ul class="new-user-lists">
-                                        <li><a href="#"><img src="/ui/images/avatar/oykun.jpg" alt="image"></a></li>
-                                        <li><a href="#"><img src="/ui/images/avatar/mds.jpg" alt="image"></a></li>
-                                        <li><a href="#"><img src="/ui/images/avatar/robertoortiz.jpg" alt="image"></a></li>
+                                        <li><a href="#"><img src="./ui/images/avatar/oykun.jpg" alt="image"></a></li>
+                                        <li><a href="#"><img src="./ui/images/avatar/mds.jpg" alt="image"></a></li>
+                                        <li><a href="#"><img src="./ui/images/avatar/robertoortiz.jpg" alt="image"></a></li>
                                         <li><a href="#" class="more-list"><i class="zmdi zmdi-more-horiz"></i></a></li>
                                     </ul>
                                 </div>
