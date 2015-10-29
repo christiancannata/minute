@@ -3267,3 +3267,10 @@ div.tagsinput span.tag {
 .datetime{
   width:230px;
 }
+.tags{
+  border:none !important;
+}
+
+.minutes select{
+  transition: none !important;
+}
