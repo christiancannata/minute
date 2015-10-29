@@ -27,6 +27,12 @@ class User extends \DB\Cortex
         'password' => array(
             'type' => \DB\SQL\Schema::DT_VARCHAR256
         ),
+        'shortname' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256
+        ),
+        'company' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256
+        ),
         'timestamp' => array(
             'type' => \DB\SQL\Schema::DT_DATETIME
         ),

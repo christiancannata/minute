@@ -103,6 +103,63 @@ $f3->route(
     }
 );
 
+$f3->route(
+    'GET /register',
+    function ($f3) {
+
+
+        $f3->set('bodyClass', 'login social-login');
+
+
+
+        echo \View::instance()->render('register.html');
+    }
+);
+
+$f3->route(
+    'POST /register',
+    function ($f3) {
+
+        $params = $f3->get("POST");
+
+
+        $user = new \Model\User();
+        $user->load(array('email = ?', $params['email']));
+        if($user->_id){
+            echo "<div class='error-message'>Account già esistente!</div>";
+            die();
+        }
+
+        $now=new \DateTime();
+        $user->name=$params['name'];
+        $user->surname=$params['surname'];
+        $user->email=$params['email'];
+        $user->password=sha1($params['password']);
+        $user->company=$params['company'];
+        $user->shortname=strtoupper(substr($params['name'],0,1)."".substr($params['surname'],0,1));
+        $user->timestamp=$now->format("Y-m-d H:i");
+        $user->last_login=$now->format("Y-m-d H:i");
+
+        $user->save();
+
+        if($user->_id){
+
+            $f3->clear('COOKIE.__minuteU');
+            $f3->clear('user');
+
+            //set unlimited cookie time
+            $inTwoMonths = 60 * 60 * 24 * 60 + time();
+            $f3->set('COOKIE.__minuteU', base64_encode(json_encode($user->cast())), $inTwoMonths);
+
+            echo "<div class='success-message'>Registrazione effettuata!</div>";
+        }else{
+            echo "<div class='error-message'>Errore nella registrazione!</div>";
+        }
+
+    }
+);
+
+
 
 $f3->route(
     'GET /ajax/users.json',
