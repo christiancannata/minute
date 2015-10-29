@@ -3217,3 +3217,16 @@ div[data-meeting][data-mode="edit"] .minutes tbody [name="dueAt"]:focus + .calen
   content: counter(topicnumber, decimal) "." counter(topicsubnumber, decimal) " ";
   counter-increment: item;
 }
+
+.minutes tbody tr.has-new-topic td.number div:before {
+  content: counter(topicnumber, decimal) ". " !important;
+}
+
+
+.minutes tbody tr td.topic, .minutes tr td.number{
+  border-top-color: transparent;
+}
+
+.minutes tr.has-new-topic td.topic, .minutes tr.has-new-topic td.number{
+  border-top-color: #ddd;
+}
