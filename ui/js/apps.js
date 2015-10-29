@@ -2425,7 +2425,8 @@ jQuery(document).ready(function ($) {
 
 
     $(document).on('click', 'tr[data-type=todo].clone-row td input', function () {
-        $(this).closest('tr').removeClass("clone-row");
+        $(".minutes tr.active").removeClass("active");
+        $(this).closest('tr').removeClass("clone-row").addClass("active");
         $(this).closest('tr').after('<tr data-type="todo" >' + $(this).closest('tr').html() + '</tr>');
         $("tr[data-type=todo]:last-child").addClass("clone-row");
         $('.input-date-picker').DatePicker({
@@ -2437,6 +2438,12 @@ jQuery(document).ready(function ($) {
             format: 'dd/mm/yyyy',
         });
     });
+
+
+    $(document).on('click', '.minutes tr.active .topic input', function () {
+        $("tr[data-type=todo]:last-child").addClass("has-new-topic");
+    });
+
 
    /* var color = $(".todo").find("option:selected").css("background-color");
     $(".todo").css("background-color", color);
