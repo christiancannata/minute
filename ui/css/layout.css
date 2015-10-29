@@ -3239,3 +3239,27 @@ div[data-meeting][data-mode="edit"] .minutes tbody [name="dueAt"]:focus + .calen
   border:none !important;
   padding: 0px !important;
 }
+.tag{
+  background:#42B6D9 !important;
+  opacity: 0.7;
+  cursor:pointer;
+  -webkit-transition: opacity 200ms;
+  -moz-transition: opacity 200ms;
+  -ms-transition: opacity 200ms;
+  -o-transition: opacity 200ms;
+  transition: opacity 200ms;
+
+}
+.tag:hover{
+  background:#42B6D9 !important;
+  opacity: 1;
+
+}
+div.tagsinput span.tag,div.tagsinput a{
+  color:white !important;
+}
+
+div.tagsinput span.tag {
+  border:none !important;
+
+}
