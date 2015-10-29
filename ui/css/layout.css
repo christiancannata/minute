@@ -3181,7 +3181,7 @@ div[data-meeting][data-mode="edit"] .minutes tbody [name="dueAt"]:focus + .calen
 .content-disabled{
   background:none !important;
 }
-
+/*
 .minutes tbody.disable-counters tr {
   counter-increment: none;
 }
@@ -3198,11 +3198,22 @@ div[data-meeting][data-mode="edit"] .minutes tbody [name="dueAt"]:focus + .calen
 
 
 .minutes tbody tr.has-new-topic td.number [contenteditable]::before {
-  color: black !important;
-  counter-increment: section;            /* Increments only this instance
-                                            of the section counter */
-  content: counters(section,".") " ";
 
   content: counter(topicnumber, decimal) "." counter(topicsubnumber, decimal) " ";
   visibility: visible !important;
+}
+
+ */
+.minutes tbody tr{
+  counter-increment: topicsubnumber;
+
+}
+.minutes tbody tr.has-new-topic {
+  counter-increment: topicnumber;
+  counter-reset: topicsubnumber;
+}
+
+.minutes tbody tr td.number div:before {
+  content: counter(topicnumber, decimal) "." counter(topicsubnumber, decimal) " ";
+  counter-increment: item;
 }

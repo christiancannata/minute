@@ -2440,8 +2440,8 @@ jQuery(document).ready(function ($) {
     });
 
 
-    $(document).on('click', '.minutes tr.active .topic input', function () {
-        $("tr[data-type=todo]:last-child").addClass("has-new-topic");
+    $(document).on('keypress', '.minutes tr.active .topic input', function () {
+        $(this).closest("tr").addClass("has-new-topic");
     });
 
 

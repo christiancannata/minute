@@ -127,8 +127,8 @@
                                 </thead>
                                 <tbody>
                                 <!-- The last <tr> in the <tbody> will be used as template for new rows -->
-                                <tr data-type="todo" class="clone-row">
-                                    <td class="number"> <div  contenteditable="" style="width:10px" ></div></td>
+                                <tr data-type="todo" class="has-new-topic">
+                                    <td class="number"> <div   ></div></td>
                                     <td class="topic">
                                         <input type="text" id="topic1" placeholder="Add Topic" class="content-editable" name="topic[]"
                                                placeholder="Topic">
@@ -168,6 +168,50 @@
                                         </a>
                                     </td>
                                 </tr>
+
+                                <tr data-type="todo" class="clone-row">
+                                    <td class="number"> <div   ></div></td>
+                                    <td class="topic">
+                                        <input type="text" id="topic3" placeholder="Add Topic" class="content-editable" name="topic[]"
+                                               placeholder="Topic">
+                                    </td>
+                                    <td class="type">
+                                        <select name="type[]" class="todo">
+                                            <option data-color="red" value="agenda" class="agenda" selected>AGENDA
+                                            </option>
+                                            <option data-color="yellow" value="decision" class="decision">DECISION
+                                            </option>
+                                            <option data-color="blue" value="done" class="done">DONE</option>
+                                            <option data-color="green" value="info" class="info">INFO</option>
+                                            <option data-color="grey" value="idea" class="idea">IDEA</option>
+                                            <option data-color="lightorange" value="todo" class="todo">TODO</option>
+                                        </select>
+                                    </td>
+                                    <td class="note">
+                                        <input type="text" id="note1" name="note[]" class="content-editable"
+                                               placeholder="Note">
+                                    </td>
+                                    <td class="owner">
+                                        <input type="text" id="owner1" name="owner[]" class="content-editable"
+                                               placeholder="Initials">
+                                    </td>
+                                    <td class="due">
+                                        <div>
+                                            <input type="text" id="due1" name="due[]" class="content-editable input-date-picker content-disabled"
+                                                   placeholder="gg/mm/aaaa" readonly disabled>
+                                            <a class="calendar">
+                                                <i class="zmdi zmdi-calendar"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="actions">
+                                        <a class="row-delete remove-task" href="#">
+                                            <span class="zmdi zmdi-close"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+
+
                                 </tbody>
                             </table>
 
