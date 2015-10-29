@@ -7,9 +7,6 @@ $f3 = require('lib/base.php');
 $f3->config('config.ini');
 
 
-
-
-
 $f3->set('DEBUG', 1);
 if ((float)PCRE_VERSION < 7.9) {
     trigger_error('PCRE version is out of date');
@@ -32,7 +29,6 @@ $f3->set('AUTOLOAD', 'app/');
 $f3->set('SERIALIZER', 'json');
 
 
-
 $f3->set('userLogged', false);
 
 $f3->set('pusher_app_id', '150225');
@@ -47,10 +43,6 @@ if (!$f3->exists('user')) {
 
     }
 }
-
-
-
-
 
 
 $f3->route(
@@ -70,7 +62,7 @@ $f3->route(
             if (!$f3->exists('SESSION.__loginSent')) {
 
 
-                $pusher=$f3->get('pusher');
+                $pusher = $f3->get('pusher');
 
                 $params = array(
                     "name" => $f3->get('user')->username,
@@ -111,7 +103,6 @@ $f3->route(
         $f3->set('bodyClass', 'login social-login');
 
 
-
         echo \View::instance()->render('register.html');
     }
 );
@@ -125,24 +116,24 @@ $f3->route(
 
         $user = new \Model\User();
         $user->load(array('email = ?', $params['email']));
-        if($user->_id){
+        if ($user->_id) {
             echo "<div class='error-message'>Account già esistente!</div>";
             die();
         }
 
-        $now=new \DateTime();
-        $user->name=$params['name'];
-        $user->surname=$params['surname'];
-        $user->email=$params['email'];
-        $user->password=sha1($params['password']);
-        $user->company=$params['company'];
-        $user->shortname=strtoupper(substr($params['name'],0,1)."".substr($params['surname'],0,1));
-        $user->timestamp=$now->format("Y-m-d H:i");
-        $user->last_login=$now->format("Y-m-d H:i");
+        $now = new \DateTime();
+        $user->name = $params['name'];
+        $user->surname = $params['surname'];
+        $user->email = $params['email'];
+        $user->password = sha1($params['password']);
+        $user->company = $params['company'];
+        $user->shortname = strtoupper(substr($params['name'], 0, 1)."".substr($params['surname'], 0, 1));
+        $user->timestamp = $now->format("Y-m-d H:i");
+        $user->last_login = $now->format("Y-m-d H:i");
 
         $user->save();
 
-        if($user->_id){
+        if ($user->_id) {
 
             $f3->clear('COOKIE.__minuteU');
             $f3->clear('user');
@@ -151,8 +142,24 @@ $f3->route(
             $inTwoMonths = 60 * 60 * 24 * 60 + time();
             $f3->set('COOKIE.__minuteU', base64_encode(json_encode($user->cast())), $inTwoMonths);
 
+
+            if (!$f3->exists('SESSION.__loginSent')) {
+
+
+                $pusher = $f3->get('pusher');
+
+                $params = array(
+                    "name" => $f3->get('user')->email,
+                    "message" => json_encode($f3->get('user')),
+                );
+
+                $pusher->trigger('private-login', 'login-success', $params, null, true);
+                $f3->set('SESSION.__loginSent', true);
+            }
+
+
             echo "<div class='success-message'>Registrazione effettuata!</div>";
-        }else{
+        } else {
             echo "<div class='error-message'>Errore nella registrazione!</div>";
         }
 
@@ -160,16 +167,15 @@ $f3->route(
 );
 
 
-
 $f3->route(
     'GET /ajax/users.json',
     function ($f3) {
         if ($f3->get('userLogged')) {
 
-            $users= $f3->get("DB")->exec('SELECT name FROM user where name like "%'.$f3->get('GET.term').'%" ');
-            $jsonUsers=array();
-            foreach($users as $user){
-                $jsonUsers[]=$user['name'];
+            $users = $f3->get("DB")->exec('SELECT name FROM user where name like "%'.$f3->get('GET.term').'%" ');
+            $jsonUsers = array();
+            foreach ($users as $user) {
+                $jsonUsers[] = $user['name'];
             }
             echo json_encode($jsonUsers);
             die();
@@ -185,8 +191,8 @@ $f3->route(
     function ($f3) {
         if ($f3->get('userLogged')) {
 
-            $date=new \DateTime();
-            $stringDate=$date->format("l, d F Y, H:i");
+            $date = new \DateTime();
+            $stringDate = $date->format("l, d F Y, H:i");
             $f3->set('date', $stringDate);
 
             $f3->set('footer', 'footer.html');
@@ -226,9 +232,9 @@ $f3->route(
         $page->minuteTaker = $params['minuteTaker'];
 
 
-        $atendees =explode(",",$params['attendees']);
+        $atendees = explode(",", $params['attendees']);
 
-        if(!empty($atendees)){
+        if (!empty($atendees)) {
 
 
         }
@@ -258,9 +264,9 @@ $f3->route(
         }
 
 
-        $pusher=$f3->get('pusher');
+        $pusher = $f3->get('pusher');
 
-        $user=$f3->get('user');
+        $user = $f3->get('user');
         $params = array(
             "name" => $user['email'],
             "message" => json_encode($page->cast()),
@@ -269,7 +275,7 @@ $f3->route(
         $pusher->trigger('private-activity', 'crate-board', $params, null, true);
 
 
-        echo json_encode(["response"=>"ok"]);
+        echo json_encode(["response" => "ok"]);
 
     }
 );
@@ -280,12 +286,6 @@ $f3->route(
     function ($f3) {
     }
 );
-
-
-
-
-
-
 
 
 $f3->route(
@@ -326,7 +326,6 @@ $f3->route(
 );
 
 
-
 $f3->route(
     'GET /login',
     function ($f3) {
@@ -359,9 +358,6 @@ $f3->route(
 );
 
 
-
-
-
 $f3->route(
     'POST /login',
     function ($f3) {
@@ -385,7 +381,11 @@ $f3->route(
 
             //set unlimited cookie time
             $inTwoMonths = 60 * 60 * 24 * 60 + time();
-            $f3->set('COOKIE.__minuteU', base64_encode(json_encode($user->cast())), $inTwoMonths);
+
+            $userCast=$user->cast();
+            unset($userCast['pages']);
+
+            $f3->set('COOKIE.__minuteU', base64_encode(json_encode($userCast)), $inTwoMonths);
 
 
             echo "<div class='success-message'>Login effettuato con successo!</div>";
@@ -397,8 +397,7 @@ $f3->route(
 );
 
 
-
-if(!$f3->exists('pusher')){
+if (!$f3->exists('pusher')) {
     $pusher = new \Services\Pusher(
         $f3->get('pusher_api_key'),
         $f3->get('pusher_app_secret'),
@@ -406,7 +405,7 @@ if(!$f3->exists('pusher')){
         array('encrypted' => true)
     );
 
-    $f3->set('pusher',$pusher);
+    $f3->set('pusher', $pusher);
 }
 
 $f3->map('/user/@user', 'User');

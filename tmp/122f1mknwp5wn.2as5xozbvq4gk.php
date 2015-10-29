@@ -3,7 +3,7 @@
         <div class="user-profile-container">
             <div class="user-profile clearfix">
                 <div class="admin-user-thumb">
-                    <img src="/ui/images/avatar/jaman_01.jpg" alt="admin">
+                    <img src="./ui/images/avatar/jaman_01.jpg" alt="admin">
                 </div>
                 <div class="admin-user-info">
                     <ul>
@@ -16,13 +16,13 @@
             </div>
             <div class="admin-bar">
                 <ul>
-                    <li><a href="/logout"><i class="zmdi zmdi-power"></i>
+                    <li><a href="<?php echo $BASE; ?>/logout"><i class="zmdi zmdi-power"></i>
                     </a>
                     </li>
-                    <li><a href="/account"><i class="zmdi zmdi-account"></i>
+                    <li><a href="<?php echo $BASE; ?>/account"><i class="zmdi zmdi-account"></i>
                     </a>
                     </li>
-                    <li><a href="/setting"><i class="zmdi zmdi-settings"></i>
+                    <li><a href="<?php echo $BASE; ?>/setting"><i class="zmdi zmdi-settings"></i>
                     </a>
                     </li>
                 </ul>
