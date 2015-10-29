@@ -23,10 +23,6 @@ class Page extends \DB\Cortex
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,
         ),
-        'attendees' => array(
-            'type' => \DB\SQL\Schema::DT_VARCHAR256,
-            'nullable' => false,
-        ),
         'place' => array(
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,
@@ -57,6 +53,9 @@ class Page extends \DB\Cortex
         ),
         'category' => array(
             'belongs-to-one' => '\Model\Category'
+        ),
+        'attendees' => array(
+            'has-many' => array('\Model\User', 'part_pages', 'page_has_attendees'),
         )
 
     );

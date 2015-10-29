@@ -76,7 +76,7 @@ $f3->route(
 
             $category = new \Model\Category();
 
-            $result=$category->afind(array('company = ?', $f3->get('user')['company']),array("order"=>"id desc"));
+            $result = $category->afind(array('company = ?', $f3->get('user')['company']), array("order" => "id desc"));
 
 
             $f3->set('meetings', $result);
@@ -97,35 +97,37 @@ $f3->route(
 
         if ($f3->get('userLogged')) {
 
-            $idCategory=intval($f3->get('PARAMS.id'));
+            $idCategory = intval($f3->get('PARAMS.id'));
 
-           if(is_integer($idCategory)){
+            if (is_integer($idCategory)) {
 
-               $f3->set('footer', 'footer.html');
-               $f3->set('header', 'header.html');
-               $f3->set('leftBar', 'left-bar.html');
-               $f3->set('rightBar', 'right-bar.html');
-               $f3->set('heder', 'header.html');
-               $f3->set('bodyClass', 'leftbar-view');
-               $f3->set('content', 'list-category.html');
+                $f3->set('footer', 'footer.html');
+                $f3->set('header', 'header.html');
+                $f3->set('leftBar', 'left-bar.html');
+                $f3->set('rightBar', 'right-bar.html');
+                $f3->set('heder', 'header.html');
+                $f3->set('bodyClass', 'leftbar-view');
+                $f3->set('content', 'list-category.html');
 
 
-               $pages = new \Model\Page();
+                $pages = new \Model\Page();
 
-               $result=$pages->afind(array('category = ?', $idCategory),array("order"=>"last_update_timestamp desc"));
+                $result = $pages->afind(
+                    array('category = ?', $idCategory),
+                    array("order" => "last_update_timestamp desc")
+                );
 
-               $f3->set('pages', $result);
+                $f3->set('pages', $result);
 
-               $category = new \Model\Category();
+                $category = new \Model\Category();
 
-               $result=$category->load(array('id = ?', $idCategory));
+                $result = $category->load(array('id = ?', $idCategory));
 
-               $f3->set('category', $result->cast());
+                $f3->set('category', $result->cast());
 
-               echo Template::instance()->render('layout.html');
+                echo Template::instance()->render('layout.html');
 
-           }
-
+            }
 
 
         } else {
@@ -138,12 +140,11 @@ $f3->route(
     'GET /page/@id',
     function ($f3) {
 
-
         if ($f3->get('userLogged')) {
 
-            $idPage=intval($f3->get('PARAMS.id'));
+            $idPage = intval($f3->get('PARAMS.id'));
 
-            if(is_integer($idPage)){
+            if (is_integer($idPage)) {
 
                 $f3->set('footer', 'footer.html');
                 $f3->set('header', 'header.html');
@@ -156,7 +157,7 @@ $f3->route(
 
                 $pages = new \Model\Page();
 
-                $result=$pages->load(array('id = ?', $idPage));
+                $result = $pages->load(array('id = ?', $idPage));
 
                 $f3->set('page', $result->cast());
 
@@ -164,7 +165,6 @@ $f3->route(
                 echo Template::instance()->render('layout.html');
 
             }
-
 
 
         } else {
@@ -194,9 +194,16 @@ $f3->route(
         $page->minuteTaker = $params['minuteTaker'];
 
 
-        $atendees = explode(",", $params['attendees']);
+        $attendees = explode(",", $params['attendees']);
+        $arrayAttendee = array();
+        if (!empty($attendees)) {
 
-        if (!empty($atendees)) {
+            foreach ($attendees as $attendee) {
+                $userAttendee = new \Model\User();
+                $userAttendee->load();
+
+                $arrayAttendee[] = $userAttendee->_id;
+            }
 
 
         }
@@ -333,10 +340,14 @@ $f3->route(
     function ($f3) {
         if ($f3->get('userLogged')) {
 
-            $users = $f3->get("DB")->exec('SELECT name FROM user where name like "%'.$f3->get('GET.term').'%" ');
+            $users = $f3->get("DB")->exec(
+                'SELECT * FROM user where name like "%'.$f3->get('GET.term').'%" or email like "%'.$f3->get(
+                    'GET.term'
+                ).'%" or shortname like "%'.$f3->get('GET.term').'%" or surname like "%'.$f3->get('GET.term').'%"'
+            );
             $jsonUsers = array();
             foreach ($users as $user) {
-                $jsonUsers[] = $user['name'];
+                $jsonUsers[] = $user['name']." ".$user['surname']." - ".$user['shortname']." (".$user['email'].")";
             }
             echo json_encode($jsonUsers);
             die();
@@ -393,12 +404,38 @@ $f3->route(
         $page->minuteTaker = $params['minuteTaker'];
 
 
-        $atendees = explode(",", $params['attendees']);
+        $attendees = explode(",", $params['attendees']);
 
-        if (!empty($atendees)) {
+
+        $idAttendees=array();
+
+        if (!empty($attendees)) {
+
+            foreach ($attendees as $attendee) {
+
+                $pattern = '/[a-z\d._%+-]+@[a-z\d.-]+\.[a-z]{2,4}\b/i';
+                preg_match_all($pattern, $attendee, $matches);
+                if (is_array($matches) && !empty($matches) && isset($matches[0][0])) {
+
+
+                    $userAttendee = new \Model\User();
+                    $userAttendee->load(array("email=?", $matches[0][0]));
+
+                    $idAttendees[]=$userAttendee;
+
+
+                    //Mando la notifica ad ogni utente taggato???
+
+                }
+
+            }
 
 
         }
+
+
+        if (!$page->attendees)
+            $page->attendees = $idAttendees;
 
 
         $now = new \DateTime();
@@ -543,7 +580,7 @@ $f3->route(
             //set unlimited cookie time
             $inTwoMonths = 60 * 60 * 24 * 60 + time();
 
-            $userCast=$user->cast();
+            $userCast = $user->cast();
             unset($userCast['pages']);
 
             $f3->set('COOKIE.__minuteU', base64_encode(json_encode($userCast)), $inTwoMonths);

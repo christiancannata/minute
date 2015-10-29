@@ -42,6 +42,9 @@ class User extends \DB\Cortex
         'pages' => array(
             'has-many' => array('\Model\Page', 'author'),
         ),
+        'part_pages' => array(
+            'has-many' => array('\Model\Page', 'attendees', 'page_has_attendees'),
+        )
 
     );
 
