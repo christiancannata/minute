@@ -2448,8 +2448,7 @@ jQuery(document).ready(function ($) {
      */
 
     $(document).on('change', "select.todo", function () {
-        /* var color = $(this).find("option:selected").attr("data-color");
-         $(this).css("background-color", color); */
+         $(this).closest('tr').attr("data-type", $(this).find("option:selected").val());
     });
 
 

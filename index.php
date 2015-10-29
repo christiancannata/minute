@@ -165,6 +165,15 @@ $f3->route(
         $page->author = $user['_id'];
         $page->minuteTaker = $params['minuteTaker'];
 
+
+        $atendees =explode(",",$params['attendees']);
+
+        if(!empty($atendees)){
+
+
+        }
+
+
         $now = new \DateTime();
         $page->timestamp = $now->format("Y-m-d H:i:s");
 
