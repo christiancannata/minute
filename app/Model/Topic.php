@@ -29,6 +29,10 @@ class Topic extends \DB\Cortex
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,
         ),
+        'level' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
         'note' => array(
             'type' => \DB\SQL\Schema::DT_TEXT,
             'nullable' => true,

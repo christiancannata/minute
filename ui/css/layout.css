@@ -3263,3 +3263,7 @@ div.tagsinput span.tag {
   border:none !important;
 
 }
+
+.datetime{
+  width:230px;
+}

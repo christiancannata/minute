@@ -128,6 +128,9 @@ $f3->route(
     function ($f3) {
         if ($f3->get('userLogged')) {
 
+            $date=new \DateTime();
+            $stringDate=$date->format("l, d F Y, H:i");
+            $f3->set('date', $stringDate);
 
             $f3->set('footer', 'footer.html');
             $f3->set('header', 'header.html');

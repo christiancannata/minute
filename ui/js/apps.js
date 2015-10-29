@@ -693,6 +693,7 @@ jQuery(document).ready(function ($) {
             daysOfWeekDisabled: "6",
             calendarWeeks: true,
             autoclose: true,
+            language: 'it-IT',
             format: 'dd/mm/yyyy',
             todayHighlight: true
         });
@@ -2422,8 +2423,15 @@ jQuery(document).ready(function ($) {
     });
 
 
-    $(document).on('click', 'tr[data-type=todo].clone-row td input', function () {
-        $(".minutes tr.active").removeClass("active");
+
+    $(document).on('click', '.minutes tr td input', function () {
+        $(this).closest('.minutes').find("tr.active").removeClass("active");
+        $(this).closest('tr').addClass("active");
+    });
+
+
+    $(document).on('click', '.minutes tr.clone-row td input', function () {
+        $(this).closest('.minutes').find("tr.active").removeClass("active");
         $(this).closest('tr').removeClass("clone-row").addClass("active");
         $(this).closest('tr').after('<tr data-type="todo" >' + $(this).closest('tr').html() + '</tr>');
         $("tr[data-type=todo]:last-child").addClass("clone-row");
@@ -2432,9 +2440,11 @@ jQuery(document).ready(function ($) {
             daysOfWeekDisabled: "6",
             calendarWeeks: true,
             autoclose: true,
+            language: 'it-IT',
             todayHighlight: true,
             format: 'dd/mm/yyyy',
         });
+
     });
 
 
