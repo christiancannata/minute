@@ -3305,3 +3305,8 @@ div.tagsinput span.tag {
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
 
 }
+
+.widget-wrap.category .widget-content strong{
+  font-size:12px;
+  font-weight: bold;
+}

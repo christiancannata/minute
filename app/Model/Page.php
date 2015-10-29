@@ -19,6 +19,14 @@ class Page extends \DB\Cortex
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,
         ),
+        'date' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
+        'attendees' => array(
+            'type' => \DB\SQL\Schema::DT_VARCHAR256,
+            'nullable' => false,
+        ),
         'place' => array(
             'type' => \DB\SQL\Schema::DT_VARCHAR256,
             'nullable' => false,

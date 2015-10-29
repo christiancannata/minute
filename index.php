@@ -134,6 +134,114 @@ $f3->route(
     }
 );
 
+$f3->route(
+    'GET /page/@id',
+    function ($f3) {
+
+
+        if ($f3->get('userLogged')) {
+
+            $idPage=intval($f3->get('PARAMS.id'));
+
+            if(is_integer($idPage)){
+
+                $f3->set('footer', 'footer.html');
+                $f3->set('header', 'header.html');
+                $f3->set('leftBar', 'left-bar.html');
+                $f3->set('rightBar', 'right-bar.html');
+                $f3->set('heder', 'header.html');
+                $f3->set('bodyClass', 'leftbar-view');
+                $f3->set('content', 'modify-page.html');
+
+
+                $pages = new \Model\Page();
+
+                $result=$pages->load(array('id = ?', $idPage));
+
+                $f3->set('page', $result->cast());
+
+
+                echo Template::instance()->render('layout.html');
+
+            }
+
+
+
+        } else {
+            $f3->reroute('/login');
+        }
+    }
+);
+
+
+$f3->route(
+    'POST /page/@id',
+    function ($f3) {
+
+        $user = $f3->get('user');
+        $params = $f3->get("POST");
+
+        $page = new \Model\Page();
+
+        $topicPage = [];
+
+        $page->title = $params['title'];
+        $page->project = $params['project'];
+        $page->place = $params['place'];
+        $page->description = $params['description'];
+        $page->others = $params['others'];
+        $page->author = $user['_id'];
+        $page->minuteTaker = $params['minuteTaker'];
+
+
+        $atendees = explode(",", $params['attendees']);
+
+        if (!empty($atendees)) {
+
+
+        }
+
+
+        $now = new \DateTime();
+        $page->timestamp = $now->format("Y-m-d H:i:s");
+
+        $page->save();
+
+        if (!empty($params['topic'])) {
+            foreach ($params['topic'] as $key => $topic) {
+                $topic = new \Model\Topic();
+
+                $topic->name = $params['topic'][$key];
+                $topic->type = $params['type'][$key];
+                $topic->due = $params['due'][$key];
+                $topic->owner = $params['owner'][$key];
+                $topic->note = $params['note'][$key];
+                $topic->page = $page;
+
+                $now = new \DateTime();
+                $topic->timestamp = $now->format("Y-m-d H:i:s");
+
+                $topic->save();
+            }
+        }
+
+
+        $pusher = $f3->get('pusher');
+
+        $user = $f3->get('user');
+        $params = array(
+            "name" => $user['email'],
+            "message" => json_encode($page->cast()),
+        );
+
+        $pusher->trigger('private-activity', 'crate-board', $params, null, true);
+
+
+        echo json_encode(["response" => "ok"]);
+
+    }
+);
+
 
 $f3->route(
     'GET /',
