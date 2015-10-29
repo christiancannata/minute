@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="page-header filled full-block light">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <h2>{{@category['name']}}</h2>
+
+                <p>12 columns grid</p>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <ul class="list-page-breadcrumb">
+                    <li><a href="#">Home <i class="zmdi zmdi-chevron-right"></i></a></li>
+                    <li class="active-page"> {{@category['name']}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <repeat group="{{ @pages }}" key="{{ @ikey }}" value="{{ @page }}">
+            <a href="{{@BASE}}/page/{{ @page['_id'] }}">
+            <div class="col-md-3">
+                <div class="widget-wrap category">
+                    <div class="widget-header block-header margin-bottom-0 clearfix">
+                        <div class="pull-left">
+                            <h3>{{@page['title']}}</h3>
+
+                            <p>{{@page['timestamp']}}</code></p>
+                        </div>
+                    </div>
+                    <div class="widget-container">
+                        <div class="widget-content">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </repeat>
+
+    </div>
+
+</div>

@@ -46,6 +46,9 @@ class Page extends \DB\Cortex
         ),
         'topics' => array(
             'has-many' => array('\Model\Topic', 'page'),
+        ),
+        'category' => array(
+            'belongs-to-one' => '\Model\Category'
         )
 
     );

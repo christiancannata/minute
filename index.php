@@ -65,7 +65,7 @@ $f3->route(
                 $pusher = $f3->get('pusher');
 
                 $params = array(
-                    "name" => $f3->get('user')->username,
+                    "name" => $f3->get('user')['email'],
                     "message" => json_encode($f3->get('user')),
                 );
 
@@ -73,7 +73,60 @@ $f3->route(
                 $f3->set('SESSION.__loginSent', true);
             }
 
+
+            $category = new \Model\Category();
+
+            $result=$category->afind(array('company = ?', $f3->get('user')['company']),array("order"=>"id desc"));
+
+
+            $f3->set('meetings', $result);
+
             echo Template::instance()->render('layout.html');
+
+        } else {
+            $f3->reroute('/login');
+        }
+    }
+);
+
+
+$f3->route(
+    'GET /meeting/@id',
+    function ($f3) {
+
+
+        if ($f3->get('userLogged')) {
+
+            $idCategory=intval($f3->get('PARAMS.id'));
+
+           if(is_integer($idCategory)){
+
+               $f3->set('footer', 'footer.html');
+               $f3->set('header', 'header.html');
+               $f3->set('leftBar', 'left-bar.html');
+               $f3->set('rightBar', 'right-bar.html');
+               $f3->set('heder', 'header.html');
+               $f3->set('bodyClass', 'leftbar-view');
+               $f3->set('content', 'list-category.html');
+
+
+               $pages = new \Model\Page();
+
+               $result=$pages->afind(array('category = ?', $idCategory),array("order"=>"last_update_timestamp desc"));
+
+               $f3->set('pages', $result);
+
+               $category = new \Model\Category();
+
+               $result=$category->load(array('id = ?', $idCategory));
+
+               $f3->set('category', $result->cast());
+
+               echo Template::instance()->render('layout.html');
+
+           }
+
+
 
         } else {
             $f3->reroute('/login');

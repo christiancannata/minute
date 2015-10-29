@@ -3,7 +3,7 @@
         <div class="user-profile-container">
             <div class="user-profile clearfix">
                 <div class="admin-user-thumb">
-                    <img src="./ui/images/avatar/jaman_01.jpg" alt="admin">
+                    <img src="<?php echo $BASE; ?>/ui/images/avatar/jaman_01.jpg" alt="admin">
                 </div>
                 <div class="admin-user-info">
                     <ul>
@@ -29,20 +29,15 @@
             </div>
         </div>
         <ul class="list-accordion tree-style">
-            <li class="list-title">Layouts</li>
+            <li class="list-title">Archivio</li>
             <li>
-                <a href="#"><i class="zmdi zmdi-view-dashboard"></i><span class="list-label">Layouts Variations</span></a>
+                <a href="#"><i class="zmdi zmdi-archive"></i><span class="list-label">Archivio Meeting</span></a>
                 <ul>
-                    <li><a href="boxed-layout.html">Boxed Layout</a></li>
-                    <li><a href="iconic-view.html">Iconic Leftbar</a></li>
-                    <li><a href="material-style-leftbar.html">Material Styled Leftbar</a></li>
-                    <li><a href="tile-leftbar.html">Tile Leftbar</a></li>
-                    <li><a href="with-language-bar.html">With Language Bar</a></li>
-                    <li><a href="top-user-thumb.html">Topbar User Thumb</a></li>
-                    <li><a href="tabby-leftbar.html">Tabby Leftbar</a></li>
-                    <li><a href="notification-rightbar.html">Only Notifications Rightbar</a></li>
-                    <li><a href="without-rightbar.html">Without Rightbar</a></li>
-                    <li><a href="activities-rightbar.html">Activities Rightbar</a></li>
+
+                    <?php foreach (($meetings?:array()) as $ikey=>$meeting): ?>
+                        <li><a href="<?php echo $BASE; ?>/meeting/<?php echo $meeting['_id']; ?>"><?php echo $meeting['name']; ?></a></li>
+                    <?php endforeach; ?>
+
                 </ul>
             </li>
             <li class="list-title">Forms</li>

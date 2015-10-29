@@ -3274,3 +3274,34 @@ div.tagsinput span.tag {
 .minutes select{
   transition: none !important;
 }
+.widget-wrap.category{
+  padding:20px !important;
+}
+.widget-wrap.category{
+  -webkit-transition: box-shadow 200ms;
+  -moz-transition: box-shadow 200ms;
+  -ms-transition: box-shadow 200ms;
+  -o-transition: box-shadow 200ms;
+  transition: box-shadow 200ms;
+}
+
+
+.widget-wrap.category .widget-header.block-header {
+  border-bottom: 1px solid #eee !important;
+  margin-left: -20px !important;
+  margin-right: -20px !important;
+  padding-bottom: 20px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  min-height: 50px !important;
+}
+
+.widget-wrap.category .widget-header.block-header h3{
+  min-height: 40px;
+}
+.widget-wrap.category:hover {
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+}

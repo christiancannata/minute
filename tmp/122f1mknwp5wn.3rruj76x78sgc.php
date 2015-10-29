@@ -20,7 +20,7 @@
                 <li><span class="left-toggle-switch"><i class="zmdi zmdi-menu"></i></span></li>
                 <li>
                     <div class="logo">
-                        <a href="index.html" title="Admin Template"><img src="./ui/images/logo.png" alt="logo"></a>
+                        <a href="<?php echo $BASE; ?>/dashboard" title="Admin Template"><img src="<?php echo $BASE; ?>/ui/images/logo.png" alt="logo"></a>
                     </div>
                 </li>
             </ul>
