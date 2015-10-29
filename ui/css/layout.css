@@ -3230,3 +3230,12 @@ div[data-meeting][data-mode="edit"] .minutes tbody [name="dueAt"]:focus + .calen
 .minutes tr.has-new-topic td.topic, .minutes tr.has-new-topic td.number{
   border-top-color: #ddd;
 }
+
+.twitter-typeahead,.tm-input-typeahead{
+  border:none !important;
+}
+
+.tagsinput{
+  border:none !important;
+  padding: 0px !important;
+}

@@ -56,11 +56,10 @@ jQuery(document).ready(function ($) {
     // Rightbar Chat Height Calculation
     // **------------------------------
 
-    $.fn.serializeObject = function()
-    {
+    $.fn.serializeObject = function () {
         var o = {};
         var a = this.serializeArray();
-        $.each(a, function() {
+        $.each(a, function () {
             if (o[this.name] !== undefined) {
                 if (!o[this.name].push) {
                     o[this.name] = [o[this.name]];
@@ -72,7 +71,6 @@ jQuery(document).ready(function ($) {
         });
         return o;
     };
-
 
 
     function ChatHeight() {
@@ -2407,9 +2405,9 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.remove-task', function (e) {
         e.preventDefault();
-        var rows=$(".minutes table tbody tr").length;
+        var rows = $(".minutes table tbody tr").length;
 
-        if(rows>1){
+        if (rows > 1) {
             $(this).closest("tr").remove();
             $("tr[data-type=todo].clone-row").removeClass("clone-row");
             $("tr[data-type=todo]:last-child").addClass("clone-row");
@@ -2419,7 +2417,7 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.calendar', function (e) {
         e.preventDefault();
-        var calendar=$(this).parent().find('.input-date-picker');
+        var calendar = $(this).parent().find('.input-date-picker');
         calendar.DatePicker("show");
     });
 
@@ -2445,13 +2443,13 @@ jQuery(document).ready(function ($) {
     });
 
 
-   /* var color = $(".todo").find("option:selected").css("background-color");
-    $(".todo").css("background-color", color);
-*/
+    /* var color = $(".todo").find("option:selected").css("background-color");
+     $(".todo").css("background-color", color);
+     */
 
     $(document).on('change', "select.todo", function () {
-       /* var color = $(this).find("option:selected").attr("data-color");
-        $(this).css("background-color", color); */
+        /* var color = $(this).find("option:selected").attr("data-color");
+         $(this).css("background-color", color); */
     });
 
 
@@ -2472,12 +2470,10 @@ jQuery(document).ready(function ($) {
     loginChannel.bind('create-board', function (notification) {
 
 
-
-      console.log(notification);
+        console.log(notification);
 
 
     });
-
 
 
     $(".j-forms").submit(function (e) {
@@ -2498,7 +2494,7 @@ jQuery(document).ready(function ($) {
         // there are many ways to get this data using jQuery (you can use the class or id also)
 
 
-        if (Offline.state == "up" ) {
+        if (Offline.state == "up") {
             var formData = $(this).serializeArray();
 
             // process the form
@@ -2509,13 +2505,13 @@ jQuery(document).ready(function ($) {
                 dataType: 'json', // what type of data do we expect back from the server
                 encode: true
             }).done(function (data) {
-                    // log data to the console so we can see
-                    // here we will handle errors and validation messages
+                // log data to the console so we can see
+                // here we will handle errors and validation messages
 
-                    $(".save").removeClass("hide");
-                    $(".processing").toggleClass("hide");
+                $(".save").removeClass("hide");
+                $(".processing").toggleClass("hide");
 
-                });
+            });
         } else {
 
             var formData = $(this).serializeObject();
@@ -2535,6 +2531,27 @@ jQuery(document).ready(function ($) {
 
 
     });
+
+
+    if ($.fn.tagsInput) {
+        $('.tags-input').each(function () {
+            $(this).tagsInput({
+                width: 'auto',
+                height: 'auto',
+                defaultText: 'names and email addresses',
+                autocomplete_url: '/ajax/users.json',
+                autocomplete: {selectFirst: true, width: '100%', autoFill: true},
+                onAddTag: function (params) {
+                    var numberTags = $("#" + $(this).attr("id") + "_tagsinput").find(".tag").length;
+                    if ( $("#" + $(this).attr("id") ).attr("max-tags") &&  numberTags > $("#" + $(this).attr("id") ).attr("max-tags")) {
+                        $("#" + $(this).attr("id")).removeTag(params);
+                    }
+                }
+            });
+
+
+        });
+    }
 
 
 })

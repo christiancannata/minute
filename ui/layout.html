@@ -23,7 +23,7 @@
     <link type="text/css" rel="stylesheet" href="ui/css/offline-theme-default-indicator.css">
     <link type="text/css" rel="stylesheet" href="ui/css/offline-language-english-indicator.css">
 
-
+    <link rel="stylesheet" type="text/css" href="ui/css/jquery.tagsinput.css" />
 </head>
 
 <body class="<?php echo Base::instance()->get('bodyClass'); ?>">
@@ -108,11 +108,22 @@
 <script src="ui/js/lib/moment.js"></script>
 <script src="ui/js/lib/daterangepicker.js"></script>
 
+
+
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
 <script src="ui/js/lib/notify.min.js"></script>
 <script src="ui/js/lib/pouchdb-4.0.3.min.js"></script>
 <script src="ui/js/apps.js"></script>
+
+
+
+
+<script src="ui/js/lib/jquery.tagsinput.js"></script>
+
+
+
+
 </body>
 
 

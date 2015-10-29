@@ -105,6 +105,25 @@ $f3->route(
 
 
 $f3->route(
+    'GET /ajax/users.json',
+    function ($f3) {
+        if ($f3->get('userLogged')) {
+
+            $users= $f3->get("DB")->exec('SELECT name FROM user where name like "%'.$f3->get('GET.term').'%" ');
+            $jsonUsers=array();
+            foreach($users as $user){
+                $jsonUsers[]=$user['name'];
+            }
+            echo json_encode($jsonUsers);
+            die();
+        } else {
+
+        }
+
+    }
+);
+
+$f3->route(
     'GET /new-board',
     function ($f3) {
         if ($f3->get('userLogged')) {
