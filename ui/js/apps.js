@@ -2423,7 +2423,6 @@ jQuery(document).ready(function ($) {
     });
 
 
-
     $(document).on('click', '.minutes tr td input', function () {
         $(this).closest('.minutes').find("tr.active").removeClass("active");
         $(this).closest('tr').addClass("active");
@@ -2449,10 +2448,10 @@ jQuery(document).ready(function ($) {
 
 
     $(document).on('keypress', '.minutes tr.active .topic input', function () {
-        var row=$(this).closest("tr");
+        var row = $(this).closest("tr");
         row.addClass("has-new-topic");
         console.log(row.find(".class"));
-        row.find(".class").attr("value","has-new-topic");
+        row.find(".class").attr("value", "has-new-topic");
     });
 
 
@@ -2461,11 +2460,11 @@ jQuery(document).ready(function ($) {
      */
 
     $(document).on('change', "select.todo", function () {
-         $(this).closest('tr').attr("data-type", $(this).find("option:selected").val());
+        $(this).closest('tr').attr("data-type", $(this).find("option:selected").val());
     });
 
 
-    var pusher = new Pusher('088902d062daa269f399', { authEndpoint: './pusher/auth' });
+    var pusher = new Pusher('088902d062daa269f399', {authEndpoint: './pusher/auth'});
 
     var loginChannel = pusher.subscribe('private-login');
     var loginChannel = pusher.subscribe('private-activity');
@@ -2508,7 +2507,7 @@ jQuery(document).ready(function ($) {
 
         if (Offline.state == "up") {
             var formData = $(this).serializeArray();
-
+            var form = $(this);
             // process the form
             $.ajax({
                 type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
@@ -2522,6 +2521,17 @@ jQuery(document).ready(function ($) {
 
                 $(".save").removeClass("hide");
                 $(".processing").toggleClass("hide");
+
+                if (form.attr('success-alert')) {
+                    swal({
+                        title: form.attr('success-alert-title'),
+                        text: form.attr('success-alert-text'),
+                        type: form.attr('success-alert'),
+                        confirmButtonColor: "#4caf50",
+                        confirmButtonText: form.attr('success-alert-button-text')
+                    });
+                }
+
 
             });
         } else {
@@ -2555,7 +2565,7 @@ jQuery(document).ready(function ($) {
                 autocomplete: {selectFirst: true, width: '100%', autoFill: true},
                 onAddTag: function (params) {
                     var numberTags = $("#" + $(this).attr("id") + "_tagsinput").find(".tag").length;
-                    if ( $("#" + $(this).attr("id") ).attr("max-tags") &&  numberTags > $("#" + $(this).attr("id") ).attr("max-tags")) {
+                    if ($("#" + $(this).attr("id")).attr("max-tags") && numberTags > $("#" + $(this).attr("id")).attr("max-tags")) {
                         $("#" + $(this).attr("id")).removeTag(params);
                     }
                 }

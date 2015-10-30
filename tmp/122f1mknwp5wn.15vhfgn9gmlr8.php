@@ -107,6 +107,7 @@
 <script src="<?php echo $BASE; ?>/ui/js/lib/daterangepicker.js"></script>
 
 
+<script src="<?php echo $BASE; ?>/ui/js/lib/sweetalert.js"></script>
 
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
