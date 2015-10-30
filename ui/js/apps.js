@@ -2449,7 +2449,10 @@ jQuery(document).ready(function ($) {
 
 
     $(document).on('keypress', '.minutes tr.active .topic input', function () {
-        $(this).closest("tr").addClass("has-new-topic");
+        var row=$(this).closest("tr");
+        row.addClass("has-new-topic");
+        console.log(row.find(".class"));
+        row.find(".class").attr("value","has-new-topic");
     });
 
 

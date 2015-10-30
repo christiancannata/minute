@@ -50,9 +50,6 @@ if (!$f3->exists('user')) {
 
     $f3->set('meetings', $result);
 
-
-
-
 }
 
 

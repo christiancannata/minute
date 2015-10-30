@@ -127,6 +127,7 @@
                                 <tbody>
                                 <!-- The last <tr> in the <tbody> will be used as template for new rows -->
                                 <tr data-type="todo" class="has-new-topic">
+                                    <input type="hidden" class="class" name="class[]" value="has-new-topic">
                                     <td class="number"> <div   ></div></td>
                                     <td class="topic">
                                         <input type="text" id="topic1" placeholder="Add Topic" class="content-editable" name="topic[]"
@@ -145,12 +146,12 @@
                                         </select>
                                     </td>
                                     <td class="note">
-                                        <input type="text" id="note1" name="note[]" class="content-editable"
-                                               placeholder="Note">
+                                        <textarea  id="note1" name="note[]" class="content-editable"
+                                                   placeholder="Note"></textarea>
                                     </td>
                                     <td class="owner">
-                                        <input type="text" id="owner1" name="owner[]" class="content-editable"
-                                               placeholder="Initials">
+                                        <input  contenteditable="" class="content-editable tags tags-input" type="text"
+                                                max-tags="1"  name="owner[]" placeholder="owner of topic">
                                     </td>
                                     <td class="due">
                                         <div>
@@ -169,6 +170,7 @@
                                 </tr>
 
                                 <tr data-type="todo" class="clone-row">
+                                    <input type="hidden" class="class" name="class[]" value="">
                                     <td class="number"> <div   ></div></td>
                                     <td class="topic">
                                         <input type="text" id="topic3" placeholder="Add Topic" class="content-editable" name="topic[]"
@@ -187,12 +189,12 @@
                                         </select>
                                     </td>
                                     <td class="note">
-                                        <input type="text" id="note1" name="note[]" class="content-editable"
-                                               placeholder="Note">
+                                        <textarea  id="note2" name="note[]" class="content-editable"
+                                                   placeholder="Note"></textarea>
                                     </td>
                                     <td class="owner">
-                                        <input type="text" id="owner1" name="owner[]" class="content-editable"
-                                               placeholder="Initials">
+                                        <input  contenteditable="" class="content-editable tags tags-input" type="text"
+                                                max-tags="1"  name="owner[]" placeholder="owner of topic">
                                     </td>
                                     <td class="due">
                                         <div>
