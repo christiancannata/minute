@@ -403,6 +403,7 @@ $f3->route(
         $page->description = $params['description'];
         $page->others = $params['others'];
         $page->author = $user['_id'];
+
         $page->minuteTaker = $params['minuteTaker'];
 
 
@@ -454,6 +455,8 @@ $f3->route(
                 $topic->due = $params['due'][$key];
                 $topic->owner = $params['owner'][$key];
                 $topic->note = $params['note'][$key];
+                $topic->class =  $params['class'][$key];
+
                 $topic->page = $page;
 
                 $now = new \DateTime();

@@ -125,7 +125,9 @@
 
 
                                 <repeat group="{{ @page['topics'] }}" key="{{ @ikey }}" value="{{ @topic }}">
-                                    <tr data-type="{{@topic['type']}}" class="{{@topic['level']}}">
+                                    <tr data-type="{{@topic['type']}}" class="{{@topic['class']}}">
+                                        <input type="hidden" class="class" name="class[]" value="{{@topic['class']}}">
+
                                         <td class="number"> <div   ></div></td>
                                         <td class="topic">
                                             <input type="text" id="topic1" placeholder="Add Topic" class="content-editable" name="topic[]"
