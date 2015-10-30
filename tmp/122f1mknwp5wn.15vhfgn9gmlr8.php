@@ -105,7 +105,9 @@
 <script src="<?php echo $BASE; ?>/ui/js/lib/bootstrap-datepicker.js"></script>
 <script src="<?php echo $BASE; ?>/ui/js/lib/moment.js"></script>
 <script src="<?php echo $BASE; ?>/ui/js/lib/daterangepicker.js"></script>
+<script src="<?php echo $BASE; ?>/ui/js/lib/bootbox.js"></script>
 
+<script src="<?php echo $BASE; ?>/ui/js/lib/autosize.min.js"></script>
 
 <script src="<?php echo $BASE; ?>/ui/js/lib/sweetalert.js"></script>
 

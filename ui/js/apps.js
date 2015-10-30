@@ -2576,5 +2576,30 @@ jQuery(document).ready(function ($) {
     }
 
 
+    autosize($('textarea'));
+
+    // Custom Html Forms
+    $('textarea').on('click', function (e) {
+        var textarea=$(this);
+        e.preventDefault();
+        bootbox.dialog({
+            title: "Note del topic",
+            message: '<div class="row">  ' +
+            '<div class="col-md-12"> ' 
+            +'<textarea id="note-popup" style="width:100%;min-height: 300px;">'+$(this).val()+'</textarea>'+
+            '</div>  </div>',
+            buttons: {
+                success: {
+                    label: "Inserisci note",
+                    className: "btn-success",
+                    callback: function () {
+                        textarea.text($("#note-popup").val());
+                    }
+                }
+            }
+        });
+    });
+
+
 })
 ;
