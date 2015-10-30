@@ -42,7 +42,19 @@ if (!$f3->exists('user')) {
         $f3->set('userLogged', true);
 
     }
+
+
+    $category = new \Model\Category();
+
+    $result = $category->afind(array('company = ?', $f3->get('user')['company']), array("order" => "id desc"));
+
+    $f3->set('meetings', $result);
+
+
+
+
 }
+
 
 
 $f3->route(
@@ -73,13 +85,6 @@ $f3->route(
                 $f3->set('SESSION.__loginSent', true);
             }
 
-
-            $category = new \Model\Category();
-
-            $result = $category->afind(array('company = ?', $f3->get('user')['company']), array("order" => "id desc"));
-
-
-            $f3->set('meetings', $result);
 
             echo Template::instance()->render('layout.html');
 
